@@ -1,0 +1,42 @@
+.todo__card button {
+  transform: scale(1.7);
+  padding: 0 4px;
+  pointer-events: nones;
+  transition: 0.2s;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  align-self: flex-start;
+}
+.todo__card button:hover {
+  background-color: #23272b;
+  border-radius: 9px;
+}
+.todo__card button:active {
+  transform: scale(1.5);
+  background-color: #38414a;
+}
+.todo__card {
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 15px;
+  background-color: #38414a;
+  font-size: 13px;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.todo__card:hover {
+  filter: brightness(120%);
+  /* transform: scale(1.05); */
+}
+.todo__card-info {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}

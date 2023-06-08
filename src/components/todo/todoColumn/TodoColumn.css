@@ -1,0 +1,28 @@
+.todo__column {
+  flex: 0 0 23%;
+  border: 2px solid black;
+  background-color: #2b2c28;
+  color: #ffff;
+  font-family: sans-serif;
+  padding: 10px 7px 20px 7px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.todo__status {
+  text-align: center;
+}
+
+.todo__lists {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+.todo__lists li {
+  width: 90%;
+}

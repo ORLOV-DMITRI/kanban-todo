@@ -4,6 +4,7 @@ import { Container } from "./components/todo/container/container";
 import { Modal } from "./components/modal-window/modal";
 import { TaskProvider } from "./context/task/task-provider";
 import { StatusProvider } from "./context/status/status-provider";
+import { Header } from "./components/header/header";
 
 function App() {
   const [isTaskModalActive, setIsTaskModalActive] = useState<boolean>(false);
@@ -16,6 +17,7 @@ function App() {
     <TaskProvider>
       <StatusProvider>
         <div className="container">
+          <Header />
           <Container onOpenModal={handleTaskModalChange} />
           <Modal
             isActive={isTaskModalActive}

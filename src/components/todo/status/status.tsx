@@ -20,15 +20,10 @@ export const Status: FC<StatusType> = ({ status, tasks }) => {
   };
 
   const saveStatusHandler = (e: FocusEvent<HTMLInputElement>) => {
-    const newStatus = e.target.value;
+    const newStatus = e.target.value.toUpperCase();
+    console.log(newStatus);
     const prevStatus = currentStatus;
-    if (newStatus.trim() === "") {
-      console.log("efe");
-      return;
-    }
-    if (prevStatus.trim() === "") {
-      return;
-    }
+
     statusChange({ newStatus, prevStatus });
 
     tasks.map((task) => {

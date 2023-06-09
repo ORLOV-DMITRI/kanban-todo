@@ -5,3 +5,13 @@ export type ModalType = {
   onCloseModal: (newState: boolean) => void;
   children: ReactNode;
 };
+export type AuthorType = {
+  setAuthor: (author: string) => void;
+  author: string;
+  onCloseModal: (newStatus: boolean) => void;
+};
+export type HeaderType = {
+  author: string;
+  displayAuthor: boolean;
+  onDeleteAuthor: () => void;
+};

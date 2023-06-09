@@ -4,7 +4,7 @@ import { ModalType } from "../../types/modal";
 
 export const Modal: FC<ModalType> = ({ children, isActive, onCloseModal }) => {
   const openCardModalHandler = () => {
-    onCloseModal(false);
+    onCloseModal(isActive);
   };
   return (
     <div
@@ -17,7 +17,7 @@ export const Modal: FC<ModalType> = ({ children, isActive, onCloseModal }) => {
         }
         onClick={(e) => e.stopPropagation()}
       >
-        {/* <CardModalForm task={task} onChangeTaskTitle={onChangeTaskTitle} /> */}
+        {children}
       </div>
     </div>
   );

@@ -1,21 +1,21 @@
 interface IComment {
-  id: number;
+  id: string;
   author: string;
   text: string;
 }
 export interface ITask {
-  id: number;
+  id: string;
   title: string;
   description: string;
   comment: Array<IComment>;
   commentCount: number;
   status: string;
-  author: IAuthor;
+  author: string;
 }
 export type TaskContextType = {
   tasks: ITask[];
   addTask: (task: ITask) => void;
-  removeTask: (taskId: number) => void;
+  removeTask: (taskId: string) => void;
   editTask: (task: ITask) => void;
 };
 export type StatusContextType = {

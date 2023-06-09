@@ -44,7 +44,7 @@ const TodoStatus: FC<TodoStatusType> = ({ status, tasks }) => {
         comment: [],
         commentCount: 0,
         status: currentStatus,
-        author: {},
+        author: "",
       };
       editTask(task);
     });

@@ -2,10 +2,9 @@ import {
   useState,
   ChangeEvent,
   MouseEvent,
-  FocusEvent,
   KeyboardEvent,
-  KeyboardEventHandler,
   useContext,
+  useId,
 } from "react";
 import { FC } from "react";
 import { ITask, TaskContextType } from "../../../@types/globalType";
@@ -18,6 +17,8 @@ const TodoAddTaskForm: FC<TodoAddTaskFormType> = ({ status, onSetIsOpen }) => {
 
   const [newTaskTitle, setNewTaskTitle] = useState<string>("");
 
+  const newTaskId = useId();
+
   const titleTaskChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setNewTaskTitle(e.target.value);
   };
@@ -27,7 +28,7 @@ const TodoAddTaskForm: FC<TodoAddTaskFormType> = ({ status, onSetIsOpen }) => {
     if (newTaskTitle.trim() === "") return;
 
     const newTask: ITask = {
-      id: uIdTask(),
+      id: newTaskId,
       title: newTaskTitle,
       description: "",
       comment: [],

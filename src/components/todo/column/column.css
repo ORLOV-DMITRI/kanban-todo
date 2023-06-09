@@ -1,15 +1,17 @@
 .todo__column {
-  flex: 0 0 23%;
-  border: 2px solid black;
-  background-color: #2b2c28;
-  color: #ffff;
-  font-family: sans-serif;
-  padding: 10px 7px 20px 7px;
-  border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  /*  */
+  flex: 0 0 23%;
+  padding: 10px 7px 20px 7px;
+  border-radius: 10px;
   gap: 30px;
+  border: 2px solid black;
+  /*  */
+  background-color: #2b2c28;
+  color: #ffff;
+  font-family: sans-serif;
 }
 .todo__status {
   text-align: center;
@@ -19,8 +21,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  /*  */
   width: 100%;
+  gap: 10px;
   margin-bottom: 30px;
 }
 .todo__lists li {

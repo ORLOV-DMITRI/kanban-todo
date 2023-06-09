@@ -4,43 +4,40 @@ import {
   MouseEvent,
   KeyboardEvent,
   useContext,
-  useId,
 } from "react";
 import { FC } from "react";
-import { ITask, TaskContextType } from "../../../@types/globalType";
-import { uIdTask } from "../../../global/uniqueID";
-import { TodoAddTaskFormType } from "../../../@types/todoType";
-import { TaskContext } from "../../../context/TaskContext";
+import { TaskType } from "../../../types/global";
+import { AddTaskFormType } from "../../../types/todo";
+import { TaskContext } from "../../../context/task/task-context";
+import { v1 } from "uuid";
+import "./task-form-add.css";
 
-const TodoAddTaskForm: FC<TodoAddTaskFormType> = ({ status, onSetIsOpen }) => {
-  const { addTask } = useContext(TaskContext) as TaskContextType;
+export const AddTaskForm: FC<AddTaskFormType> = ({ status, onSetIsOpen }) => {
+  const { taskAdd } = useContext(TaskContext);
 
-  const [newTaskTitle, setNewTaskTitle] = useState<string>("");
-
-  const newTaskId = useId();
+  const [taskTitle, setTaskTitle] = useState<string>("");
 
   const titleTaskChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setNewTaskTitle(e.target.value);
+    setTaskTitle(e.target.value);
   };
   const submitHandler = (e: MouseEvent | KeyboardEvent) => {
     e.preventDefault();
 
-    if (newTaskTitle.trim() === "") return;
+    if (taskTitle.trim() === "") return;
 
-    const newTask: ITask = {
-      id: newTaskId,
-      title: newTaskTitle,
+    const newTask: TaskType = {
+      id: v1(),
+      title: taskTitle.trim(),
       description: "",
       comment: [],
-      commentCount: 0,
       status: status,
       author: "Dimas",
     };
 
-    addTask(newTask);
+    taskAdd(newTask);
 
-    setNewTaskTitle("");
-    onSetIsOpen(e);
+    setTaskTitle("");
+    onSetIsOpen();
   };
   //   const focusTextAreaHandler = (e: FocusEvent<HTMLTextAreaElement>) => {
   //     e.target.focus();
@@ -53,22 +50,22 @@ const TodoAddTaskForm: FC<TodoAddTaskFormType> = ({ status, onSetIsOpen }) => {
       submitHandler(e);
     }
     if (e.code === "Escape") {
-      onSetIsOpen(e);
+      onSetIsOpen();
     }
   };
 
   return (
-    <form>
-      <div>
+    <form className="form">
+      <div className="form__input">
         <textarea
-          value={newTaskTitle}
+          value={taskTitle}
           onChange={titleTaskChangeHandler}
           onKeyDown={keyDownSubmitHandler}
           autoFocus
           placeholder="Введите заголовок для этой карточки"
         ></textarea>
       </div>
-      <div>
+      <div className="form__btn">
         <input
           type="submit"
           value="Добавить карточку"
@@ -79,4 +76,3 @@ const TodoAddTaskForm: FC<TodoAddTaskFormType> = ({ status, onSetIsOpen }) => {
     </form>
   );
 };
-export default TodoAddTaskForm;

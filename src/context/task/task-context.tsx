@@ -1,5 +1,5 @@
-import { FC, createContext, useEffect, useId, useState } from "react";
-import { ITask, ProviderType, TaskContextType } from "../@types/globalType";
+import { createContext } from "react";
+import { TaskContextType } from "../../types/global";
 
 // const initialTasks: ITask[] = [
 //   {
@@ -105,52 +105,11 @@ import { ITask, ProviderType, TaskContextType } from "../@types/globalType";
 //   //   },
 //   // },
 // ];
-
-export const TaskContext = createContext<TaskContextType | null>(null);
-
-const TaskProvider: FC<ProviderType> = ({ children }) => {
-  const TaskId = () => {
-    let newId = useId();
-    return () => newId;
-  };
-
-  const [tasks, setTasks] = useState<ITask[]>(
-    JSON.parse(localStorage.getItem("tasks")!) || null
-  );
-
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
-
-  const addTask = (task: ITask) => {
-    const newTask: ITask = {
-      id: task.id,
-      title: task.title,
-      description: "",
-      comment: [],
-      commentCount: 0,
-      status: task.status,
-      author: task.author,
-    };
-    setTasks([...tasks, newTask]);
-  };
-  const removeTask = (taskId: string) => {
-    const filtredTasks = tasks.filter((task) => task.id !== taskId);
-    setTasks(filtredTasks);
-  };
-  const editTask = (newTask: ITask) => {
-    tasks.filter((task: ITask) => {
-      if (task.id === newTask.id) {
-        task = newTask;
-        setTasks([...tasks]);
-      }
-    });
-  };
-  return (
-    <TaskContext.Provider value={{ tasks, addTask, removeTask, editTask }}>
-      {children}
-    </TaskContext.Provider>
-  );
+const initial = {
+  tasks: [],
+  taskAdd: () => {},
+  taskDelete: () => {},
+  taskUpdate: () => {},
 };
 
-export default TaskProvider;
+export const TaskContext = createContext<TaskContextType>(initial);

@@ -1,26 +1,28 @@
 import React, { useState } from "react";
 import "./App.css";
-import TaskProvider from "./context/TaskContext";
-import StatusProvider from "./context/StatusContext";
-import TodoContainer from "./components/todo/todoContainer/TodoContainer";
-import TaskModal from "./components/TaskModal/TaskModal";
+import { Container } from "./components/todo/container/container";
+import { Modal } from "./components/modal-window/modal";
+import { TaskProvider } from "./context/task/task-provider";
+import { StatusProvider } from "./context/status/status-provider";
 
 function App() {
-  const [isCardModalActive, setIsCardModalActive] = useState<boolean>(false);
+  const [isTaskModalActive, setIsTaskModalActive] = useState<boolean>(false);
 
-  const onChangeActiveHandler = () => {
-    setIsCardModalActive((prevActive) => !prevActive);
+  const handleTaskModalChange = (newState: boolean) => {
+    setIsTaskModalActive(newState);
   };
 
   return (
     <TaskProvider>
       <StatusProvider>
         <div className="container">
-          <TodoContainer />
-          <TaskModal
-            isActive={isCardModalActive}
-            onChangeActive={onChangeActiveHandler}
-          />
+          <Container onOpenModal={handleTaskModalChange} />
+          <Modal
+            isActive={isTaskModalActive}
+            onCloseModal={handleTaskModalChange}
+          >
+            <div>Привет</div>
+          </Modal>
         </div>
       </StatusProvider>
     </TaskProvider>

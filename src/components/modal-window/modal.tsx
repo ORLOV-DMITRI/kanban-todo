@@ -1,10 +1,10 @@
 import { FC } from "react";
-import "./TaskModal.css";
-import { TaskModalType } from "../../@types/modalType";
+import "./modal.css";
+import { ModalType } from "../../types/modal";
 
-const TaskModal: FC<TaskModalType> = ({ isActive, onChangeActive }) => {
+export const Modal: FC<ModalType> = ({ children, isActive, onCloseModal }) => {
   const openCardModalHandler = () => {
-    onChangeActive();
+    onCloseModal(false);
   };
   return (
     <div
@@ -22,5 +22,3 @@ const TaskModal: FC<TaskModalType> = ({ isActive, onChangeActive }) => {
     </div>
   );
 };
-
-export default TaskModal;

@@ -1,9 +1,7 @@
 .container {
-  /* background-color: rgb(83, 117, 117); */
+  height: 100vh;
+  padding: 0 20px;
   background-image: url("../public/background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-
-  height: 100vh;
-  padding: 0 20px;
 }

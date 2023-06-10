@@ -38,19 +38,11 @@ export const TaskProvider: FC<ProviderType> = ({ children }) => {
   const [tasks, setTasks] = useState<TaskType[]>(
     JSON.parse(localStorage.getItem("tasks") || "") //ЗАБЫЛ КАК ЭТО СДЕЛАТЬ
   );
-  const [displayedTask, setDisplayedTask] = useState<TaskType>(initTask);
-  console.log(displayedTask);
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  const taskShow = (taskId: string) => {
-    const currentTask = tasks.find((task) => task.id === taskId);
-    if (currentTask) {
-      setDisplayedTask(currentTask);
-    }
-  };
   const taskAdd = (task: TaskType) => {
     const newTask: TaskType = {
       id: task.id,
@@ -62,8 +54,8 @@ export const TaskProvider: FC<ProviderType> = ({ children }) => {
     };
     setTasks([...tasks, newTask]);
   };
-  const taskDelete = (taskId: string) => {
-    const filteredTasks = tasks.filter((task) => task.id !== taskId);
+  const taskDelete = (id: string) => {
+    const filteredTasks = tasks.filter((task) => task.id !== id);
     setTasks(filteredTasks);
   };
   const taskUpdate = (newTask: TaskType) => {
@@ -81,8 +73,6 @@ export const TaskProvider: FC<ProviderType> = ({ children }) => {
         taskAdd,
         taskDelete,
         taskUpdate,
-        taskShow,
-        displayedTask,
       }}
     >
       {children}

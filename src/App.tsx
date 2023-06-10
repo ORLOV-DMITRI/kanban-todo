@@ -1,13 +1,28 @@
 import React, { useState } from "react";
 import "./App.css";
 import { Container } from "./components/todo/container/container";
-import { Modal } from "./components/modal-window/modal";
 import { TaskProvider } from "./context/task/task-provider";
 import { StatusProvider } from "./context/status/status-provider";
 import { Header } from "./components/header/header";
 import { Author } from "./components/modal-window/author/author";
 import { TaskModalForm } from "./components/modal-window/task/task";
-
+import { TaskType } from "./types/global";
+import { AuthorModal } from "./components/modal-window/author/author-modal/author-modal";
+import { TaskModal } from "./components/modal-window/task/task-modal/task-modal";
+const initTask = {
+  id: "123",
+  title: "Заголовок Заголовок Заголовок",
+  description: "Описание Описание Описание Описание Описание",
+  comment: [
+    {
+      id: "111",
+      text: "Комент 1 Комент 1 Комент 1 Комент 1 Комент 1",
+      author: "DImas",
+    },
+  ],
+  status: "TODO",
+  author: "Dimas",
+};
 function App() {
   const [currentAuthor, setCurrentAuthor] = useState<string>(
     localStorage.getItem("author") || ""
@@ -16,8 +31,17 @@ function App() {
   const [isAuthorModalActive, setIsAuthorModalActive] = useState<boolean>(
     currentAuthor ? false : true
   );
+  const [currentTask, setCurrentTask] = useState<TaskType>();
+
+  // const onDisplayedTaskChange = (taskId: string) => {
+  //   setDisplayedTaskId(taskId);
+  // };
 
   const handleTaskModalChange = (newState: boolean) => {
+    setIsTaskModalActive((prevActive) => !prevActive);
+  };
+  const handleTaskModal = (newState: boolean, task: TaskType) => {
+    setCurrentTask(task);
     setIsTaskModalActive((prevActive) => !prevActive);
   };
   const handleAuthorModalChange = (newState: boolean) => {
@@ -32,37 +56,40 @@ function App() {
     setCurrentAuthor("");
     localStorage.removeItem("author");
   };
+  const checkIsCurrentTask = () => {
+    if (currentTask) {
+      return (
+        <TaskModal
+          isActive={isTaskModalActive}
+          onCloseModal={handleTaskModalChange}
+          task={currentTask}
+        />
+      );
+    }
+  };
 
   return (
-    <TaskProvider>
-      <StatusProvider>
-        <Modal
-          isActive={isAuthorModalActive}
+    <div>
+      <AuthorModal
+        isActive={isAuthorModalActive}
+        onCloseModal={handleAuthorModalChange}
+      >
+        <Author
+          setAuthor={handleAuthorSave}
+          author={currentAuthor}
           onCloseModal={handleAuthorModalChange}
-        >
-          <Author
-            setAuthor={handleAuthorSave}
-            author={currentAuthor}
-            onCloseModal={handleAuthorModalChange}
-          />
-        </Modal>
-
-        <div className="container">
-          <Header
-            author={currentAuthor}
-            displayAuthor={isAuthorModalActive}
-            onDeleteAuthor={handleAuthorDelete}
-          />
-          <Container onOpenModal={handleTaskModalChange} />
-          <Modal
-            isActive={isTaskModalActive}
-            onCloseModal={handleTaskModalChange}
-          >
-            <TaskModalForm onCloseModal={handleTaskModalChange} />
-          </Modal>
-        </div>
-      </StatusProvider>
-    </TaskProvider>
+        />
+      </AuthorModal>
+      <div className="container">
+        <Header
+          author={currentAuthor}
+          displayAuthor={isAuthorModalActive}
+          onDeleteAuthor={handleAuthorDelete}
+        />
+        <Container onOpenModal={handleTaskModal} />
+        {checkIsCurrentTask()}
+      </div>
+    </div>
   );
 }
 

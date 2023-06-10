@@ -6,7 +6,7 @@ import { TaskContextType } from "../../../types/context";
 import { ICONS } from "../../../constants/icons";
 
 export const Card: FC<CardType> = ({ task, onOpenModal }) => {
-  const { taskDelete, taskShow } = useContext(TaskContext) as TaskContextType;
+  const { taskDelete } = useContext(TaskContext);
 
   const [isDeleteIconVisible, setIsDeleteIconVisible] =
     useState<boolean>(false);
@@ -19,8 +19,7 @@ export const Card: FC<CardType> = ({ task, onOpenModal }) => {
     taskDelete(task.id);
   };
   const handleModalOpen = () => {
-    taskShow(task.id);
-    onOpenModal(true);
+    onOpenModal(true, task);
   };
 
   const commentCount = () => {

@@ -17,6 +17,7 @@
   border: none;
   font-size: 20px;
   color: #b6c2cf;
+  border: 1px solid transparent;
 
   /* transition: 0.2s; */
 }

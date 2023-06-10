@@ -13,7 +13,7 @@ export const Status: FC<StatusType> = ({ status, tasks }) => {
   const handleTextSelect = (e: FocusEvent<HTMLInputElement>) =>
     e.target.select();
 
-  const saveChangeHandler = (e: any) => {
+  const handleKeyEvent = (e: any) => {
     if (e.code === "Enter" || e.code === "NumpadEnter") {
       e.target.blur();
     }
@@ -21,7 +21,6 @@ export const Status: FC<StatusType> = ({ status, tasks }) => {
 
   const saveStatusHandler = (e: FocusEvent<HTMLInputElement>) => {
     const newStatus = e.target.value.toUpperCase();
-    console.log(newStatus);
     const prevStatus = currentStatus;
 
     statusChange({ newStatus, prevStatus });
@@ -39,7 +38,7 @@ export const Status: FC<StatusType> = ({ status, tasks }) => {
         type="text"
         defaultValue={currentStatus}
         onFocus={handleTextSelect}
-        onKeyDown={saveChangeHandler}
+        onKeyDown={handleKeyEvent}
         onBlur={saveStatusHandler}
       />
     </div>

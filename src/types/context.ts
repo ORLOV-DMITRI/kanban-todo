@@ -3,10 +3,8 @@ import { TaskType } from "./global";
 export type TaskContextType = {
   tasks: Array<TaskType>;
   taskAdd: (task: TaskType) => void;
-  taskDelete: (taskId: string) => void;
+  taskDelete: (id: string) => void;
   taskUpdate: (task: TaskType) => void;
-  taskShow: (taskId: string) => void;
-  displayedTask: TaskType;
 };
 export type Statuses = {
   newStatus: string;

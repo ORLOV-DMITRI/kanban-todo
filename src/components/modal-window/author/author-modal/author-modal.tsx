@@ -1,9 +1,14 @@
 import { FC } from "react";
-import "./modal.css";
-import { ModalType } from "../../types/modal";
+import "../../modal.css";
+import { AuthorModalType } from "../../../../types/modal";
 
-export const Modal: FC<ModalType> = ({ children, isActive, onCloseModal }) => {
+export const AuthorModal: FC<AuthorModalType> = ({
+  children,
+  isActive,
+  onCloseModal,
+}) => {
   const handleModalClose = () => {
+    console.log("Закрытие окна");
     onCloseModal(isActive);
   };
   return (

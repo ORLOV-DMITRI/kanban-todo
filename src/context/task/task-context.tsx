@@ -118,8 +118,6 @@ const initial = {
   taskAdd: () => {},
   taskDelete: () => {},
   taskUpdate: () => {},
-  taskShow: () => {},
-  displayedTask: initTask,
 };
 
 export const TaskContext = createContext<TaskContextType>(initial);

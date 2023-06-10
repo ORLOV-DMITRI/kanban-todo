@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { TaskContextType } from "../../types/global";
+import { TaskContextType } from "../../types/context";
 
 // const initialTasks: ITask[] = [
 //   {
@@ -105,11 +105,21 @@ import { TaskContextType } from "../../types/global";
 //   //   },
 //   // },
 // ];
+const initTask = {
+  id: "",
+  title: "",
+  description: "",
+  comment: [],
+  status: "TODO",
+  author: "",
+};
 const initial = {
   tasks: [],
   taskAdd: () => {},
   taskDelete: () => {},
   taskUpdate: () => {},
+  taskShow: () => {},
+  displayedTask: initTask,
 };
 
 export const TaskContext = createContext<TaskContextType>(initial);

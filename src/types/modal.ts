@@ -10,8 +10,3 @@ export type AuthorType = {
   author: string;
   onCloseModal: (newStatus: boolean) => void;
 };
-export type HeaderType = {
-  author: string;
-  displayAuthor: boolean;
-  onDeleteAuthor: () => void;
-};

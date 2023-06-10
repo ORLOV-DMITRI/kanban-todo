@@ -3,13 +3,13 @@ import "./modal.css";
 import { ModalType } from "../../types/modal";
 
 export const Modal: FC<ModalType> = ({ children, isActive, onCloseModal }) => {
-  const openCardModalHandler = () => {
+  const handleModalClose = () => {
     onCloseModal(isActive);
   };
   return (
     <div
       className={isActive ? "card-modal active" : "card-modal"}
-      onClick={openCardModalHandler}
+      onClick={handleModalClose}
     >
       <div
         className={

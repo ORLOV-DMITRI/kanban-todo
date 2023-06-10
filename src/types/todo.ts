@@ -1,4 +1,3 @@
-import { type } from "os";
 import { TaskType } from "./global";
 
 export type ContainerType = {

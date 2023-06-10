@@ -1,5 +1,5 @@
-import { FC, useState, createContext, useMemo, useEffect } from "react";
-import { ProviderType, StatusContextType, Statuses } from "../../types/global";
+import { createContext } from "react";
+import { StatusContextType } from "../../types/context";
 
 const initial = {
   statuses: [],

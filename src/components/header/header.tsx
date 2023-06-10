@@ -1,4 +1,4 @@
-import { HeaderType } from "../../types/modal";
+import { HeaderType } from "../../types/header";
 import "./header.css";
 import { FC } from "react";
 

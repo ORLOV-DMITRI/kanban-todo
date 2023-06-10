@@ -2,11 +2,11 @@ import { useState, FC, useContext, MouseEvent } from "react";
 import "./card.css";
 import { CardType } from "../../../types/todo";
 import { TaskContext } from "../../../context/task/task-context";
-import { TaskContextType } from "../../../types/global";
+import { TaskContextType } from "../../../types/context";
 import { ICONS } from "../../../constants/icons";
 
 export const Card: FC<CardType> = ({ task, onOpenModal }) => {
-  const { taskDelete } = useContext(TaskContext) as TaskContextType;
+  const { taskDelete, taskShow } = useContext(TaskContext) as TaskContextType;
 
   const [isDeleteIconVisible, setIsDeleteIconVisible] =
     useState<boolean>(false);
@@ -19,6 +19,7 @@ export const Card: FC<CardType> = ({ task, onOpenModal }) => {
     taskDelete(task.id);
   };
   const handleModalOpen = () => {
+    taskShow(task.id);
     onOpenModal(true);
   };
 

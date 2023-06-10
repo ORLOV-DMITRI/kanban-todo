@@ -6,6 +6,7 @@ import { TaskProvider } from "./context/task/task-provider";
 import { StatusProvider } from "./context/status/status-provider";
 import { Header } from "./components/header/header";
 import { Author } from "./components/modal-window/author/author";
+import { TaskModalForm } from "./components/modal-window/task/task";
 
 function App() {
   const [currentAuthor, setCurrentAuthor] = useState<string>(
@@ -17,7 +18,7 @@ function App() {
   );
 
   const handleTaskModalChange = (newState: boolean) => {
-    setIsTaskModalActive(newState);
+    setIsTaskModalActive((prevActive) => !prevActive);
   };
   const handleAuthorModalChange = (newState: boolean) => {
     setIsAuthorModalActive(newState);
@@ -35,17 +36,18 @@ function App() {
   return (
     <TaskProvider>
       <StatusProvider>
-        <div className="container">
-          <Modal
-            isActive={isAuthorModalActive}
+        <Modal
+          isActive={isAuthorModalActive}
+          onCloseModal={handleAuthorModalChange}
+        >
+          <Author
+            setAuthor={handleAuthorSave}
+            author={currentAuthor}
             onCloseModal={handleAuthorModalChange}
-          >
-            <Author
-              setAuthor={handleAuthorSave}
-              author={currentAuthor}
-              onCloseModal={handleAuthorModalChange}
-            />
-          </Modal>
+          />
+        </Modal>
+
+        <div className="container">
           <Header
             author={currentAuthor}
             displayAuthor={isAuthorModalActive}
@@ -56,7 +58,7 @@ function App() {
             isActive={isTaskModalActive}
             onCloseModal={handleTaskModalChange}
           >
-            <div>Привет</div>
+            <TaskModalForm onCloseModal={handleTaskModalChange} />
           </Modal>
         </div>
       </StatusProvider>

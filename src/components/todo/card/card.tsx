@@ -2,12 +2,10 @@ import { useState, FC, useContext, MouseEvent } from "react";
 import "./card.css";
 import { CardType } from "../../../types/todo";
 import { TaskContext } from "../../../context/task/task-context";
-import { TaskContextType } from "../../../types/context";
 import { ICONS } from "../../../constants/icons";
 
 export const Card: FC<CardType> = ({ task, onOpenModal }) => {
-  const { taskDelete , taskUpdate} = useContext(TaskContext);
-
+  const { taskDelete, taskUpdate } = useContext(TaskContext);
 
   const [isDeleteIconVisible, setIsDeleteIconVisible] =
     useState<boolean>(false);
@@ -22,13 +20,13 @@ export const Card: FC<CardType> = ({ task, onOpenModal }) => {
   const handleModalOpen = () => {
     onOpenModal(true);
     task.isActive = true;
-    taskUpdate(task)
+    taskUpdate(task);
   };
 
-  const commentCount = () => {
+  const commentsCount = () => {
     return (
       <span>
-        {ICONS.comment()} <span>{task.comment.length}</span>
+        {ICONS.comment()} <span>{task.comments.length}</span>
       </span>
     );
   };
@@ -47,7 +45,7 @@ export const Card: FC<CardType> = ({ task, onOpenModal }) => {
         <p className="todo__title">{task.title}</p>
         {isDeleteIconVisible && deleteIcon()}
       </div>
-      {task.comment.length > 0 && commentCount()}
+      {task.comments.length > 0 && commentsCount()}
     </div>
   );
 };

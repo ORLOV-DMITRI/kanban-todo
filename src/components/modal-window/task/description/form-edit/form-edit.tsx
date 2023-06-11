@@ -12,23 +12,23 @@ export const FormEdit: FC<FormEditType> = ({
   descriptionDelete,
   description,
 }) => {
-  const [isEdit, setIsEdit] = useState(false);
+  const [isEdited, setIsEdited] = useState(false);
   const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.ctrlKey && e.code === "Enter") {
       descriptionSave();
-      setIsEdit(!isEdit);
+      setIsEdited(!isEdited);
     }
     if (e.ctrlKey && e.code === "NumpadEnter") {
       descriptionSave();
-      setIsEdit(!isEdit);
+      setIsEdited(!isEdited);
     }
   };
 
   const handleBlur = () => {
-    setIsEdit(!isEdit);
+    setIsEdited(!isEdited);
     descriptionSave();
   };
-  if (isEdit) {
+  if (isEdited) {
     return (
       <div>
         <div>
@@ -41,7 +41,7 @@ export const FormEdit: FC<FormEditType> = ({
         </div>
         <div>
           <button onClick={descriptionSave}>Сохранить</button>
-          <button onClick={() => setIsEdit(!isEdit)}>Отменить</button>
+          <button onClick={() => setIsEdited(!isEdited)}>Отменить</button>
         </div>
       </div>
     );
@@ -52,7 +52,7 @@ export const FormEdit: FC<FormEditType> = ({
       <div></div>
       <p>{description}</p>
       <div>
-        <button onClick={() => setIsEdit(!isEdit)}>Изменить</button>
+        <button onClick={() => setIsEdited(!isEdited)}>Изменить</button>
         <button onClick={descriptionDelete}>Удалить</button>
       </div>
     </div>

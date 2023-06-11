@@ -1,12 +1,8 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import "./App.css";
 import { Container } from "./components/todo/container/container";
-import { TaskProvider } from "./context/task/task-provider";
-import { StatusProvider } from "./context/status/status-provider";
 import { Header } from "./components/header/header";
 import { Author } from "./components/modal-window/author/author";
-import { TaskModalForm } from "./components/modal-window/task/modal-form/task";
-import { TaskType } from "./types/global";
 import { AuthorModal } from "./components/modal-window/author/author-modal/author-modal";
 import { TaskModal } from "./components/modal-window/task/modal/task-modal";
 import { AuthorContext } from "./context/author/author-context";
@@ -14,7 +10,7 @@ const initTask = {
   id: "123",
   title: "Заголовок Заголовок Заголовок",
   description: "Описание Описание Описание Описание Описание",
-  comment: [
+  comments: [
     {
       id: "111",
       text: "Комент 1 Комент 1 Комент 1 Комент 1 Комент 1",
@@ -25,32 +21,18 @@ const initTask = {
   author: "Dimas",
 };
 function App() {
-  const [currentAuthor, setCurrentAuthor] = useState<string>(
-    localStorage.getItem("author") || ""
-  );
   const { author } = useContext(AuthorContext);
+
   const [isTaskModalActive, setIsTaskModalActive] = useState<boolean>(false);
   const [isAuthorModalActive, setIsAuthorModalActive] = useState<boolean>(
     author ? false : true
   );
 
-  const handleTaskModalChange = (newState: boolean) => {
-    setIsTaskModalActive((prevActive) => !prevActive);
-  };
   const handleTaskModal = (newState: boolean) => {
     setIsTaskModalActive((prevActive) => !prevActive);
   };
   const handleAuthorModalChange = (newState: boolean) => {
     setIsAuthorModalActive(newState);
-  };
-  const handleAuthorSave = (author: string) => {
-    setCurrentAuthor(author);
-    localStorage.setItem("author", author);
-  };
-  const handleAuthorDelete = () => {
-    setIsAuthorModalActive(true);
-    setCurrentAuthor("");
-    localStorage.removeItem("author");
   };
 
   return (
@@ -59,22 +41,17 @@ function App() {
         isActive={isAuthorModalActive}
         onCloseModal={handleAuthorModalChange}
       >
-        <Author
-          setAuthor={handleAuthorSave}
-          author={currentAuthor}
-          onCloseModal={handleAuthorModalChange}
-        />
+        <Author onCloseModal={handleAuthorModalChange} />
       </AuthorModal>
       <div className="container">
         <Header
-          author={currentAuthor}
           displayAuthor={isAuthorModalActive}
-          onDeleteAuthor={handleAuthorDelete}
+          onAuthorModalChange={handleAuthorModalChange}
         />
         <Container onOpenModal={handleTaskModal} />
         <TaskModal
           isActive={isTaskModalActive}
-          onCloseModal={handleTaskModalChange}
+          onCloseModal={handleTaskModal}
         />
       </div>
     </div>

@@ -11,7 +11,9 @@ export type TaskModalType = {
   onCloseModal: (newState: boolean) => void;
 };
 export type AuthorType = {
-  setAuthor: (author: string) => void;
-  author: string;
   onCloseModal: (newStatus: boolean) => void;
+};
+export type TaskDetailType = {
+  task: TaskType;
+  taskUpdate: (task: TaskType) => void;
 };

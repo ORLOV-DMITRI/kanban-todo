@@ -33,7 +33,6 @@ const initTasks = [
     author: "Dimas",
   },
 ];
-
 export const TaskProvider: FC<ProviderType> = ({ children }) => {
   const [tasks, setTasks] = useState<TaskType[]>(
     JSON.parse(localStorage.getItem("tasks") || "") || initTasks //ЗАБЫЛ КАК ЭТО СДЕЛАТЬ
@@ -48,7 +47,7 @@ export const TaskProvider: FC<ProviderType> = ({ children }) => {
       id: task.id,
       title: task.title,
       description: "",
-      comment: [],
+      comments: [],
       status: task.status,
       author: task.author,
     };

@@ -23,3 +23,4 @@ export type AuthorContextType = {
   authorSave: (author: string) => void;
   authorDelete: () => void;
 };
+export type CommentsContextType = {};

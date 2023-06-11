@@ -1,0 +1,32 @@
+.comment__form {
+  position: relative;
+}
+.comment__avatar {
+  top: 0;
+  width: 25px;
+  height: 25px;
+  background-image: url(/public/img/user.png);
+  background-size: contain;
+  object-fit: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: -25px;
+}
+.avatar__form {
+  position: absolute;
+  left: -25px;
+}
+.comment__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.comment__list li {
+  position: relative;
+  display: flex;
+  align-self: flex-start;
+  gap: 10px;
+}
+.comment__new {
+  position: relative;
+}

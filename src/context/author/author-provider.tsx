@@ -18,7 +18,6 @@ export const AuthorProvider: FC<ProviderType> = ({ children }) => {
   };
   const authorDelete = () => {
     setAuthor("");
-    // localStorage.removeItem("author");
   };
   return (
     <AuthorContext.Provider

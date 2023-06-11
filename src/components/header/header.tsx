@@ -3,8 +3,16 @@ import { HeaderType } from "../../types/header";
 import "./header.css";
 import { FC, useContext } from "react";
 
-export const Header: FC<HeaderType> = ({ displayAuthor, onDeleteAuthor }) => {
-  const { author } = useContext(AuthorContext);
+export const Header: FC<HeaderType> = ({
+  displayAuthor,
+  onAuthorModalChange,
+}) => {
+  const { author, authorDelete } = useContext(AuthorContext);
+
+  const handleAuthorDelete = () => {
+    authorDelete();
+    onAuthorModalChange(true);
+  };
   return (
     <header className="header">
       <nav className="header__nav">
@@ -17,7 +25,7 @@ export const Header: FC<HeaderType> = ({ displayAuthor, onDeleteAuthor }) => {
             <div className="author-icon"></div>
           </li>
           <li className="header__icon">
-            <div className="exit-icon" onClick={onDeleteAuthor}></div>
+            <div className="exit-icon" onClick={handleAuthorDelete}></div>
           </li>
         </ul>
       </nav>

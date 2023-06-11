@@ -4,12 +4,10 @@ import "./author.css";
 import { FC, ChangeEvent, useContext, useState } from "react";
 import { AuthorContext } from "./../../../context/author/author-context";
 
-export const Author: FC<AuthorType> = ({ setAuthor, onCloseModal }) => {
-  const { author, authorSave } = useContext(AuthorContext);
+export const Author: FC<AuthorType> = ({ onCloseModal }) => {
+  const { authorSave } = useContext(AuthorContext);
   const [currentAuthor, setCurrentAuthor] = useState<string>("");
-  // const handleAuthorCreation = (e: ChangeEvent<HTMLInputElement>) => {
-  //   setAuthor(e.target.value);
-  // };
+
   const handleAuthorChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCurrentAuthor(e.target.value);
   };
@@ -17,6 +15,7 @@ export const Author: FC<AuthorType> = ({ setAuthor, onCloseModal }) => {
   const handleCloseModal = () => {
     authorSave(currentAuthor);
     onCloseModal(false);
+    setCurrentAuthor("");
   };
 
   const displayDoneIcon = () => {

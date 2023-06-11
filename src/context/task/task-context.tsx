@@ -5,7 +5,7 @@ const initTask = {
   id: "",
   title: "",
   description: "",
-  comment: [],
+  comments: [],
   status: "TODO",
   author: "",
 };

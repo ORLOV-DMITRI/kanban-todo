@@ -29,7 +29,7 @@ export const AddTaskForm: FC<AddTaskFormType> = ({ status, onSetIsOpen }) => {
       id: v1(),
       title: title.trim(),
       description: "",
-      comment: [],
+      comments: [],
       status: status,
       author: "Dimas",
     };

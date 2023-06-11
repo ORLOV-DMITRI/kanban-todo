@@ -3,11 +3,9 @@ import { ICONS } from "../../../../constants/icons";
 import { TaskType } from "../../../../types/global";
 import { FormAdd } from "./form-add/form-add";
 import { FormEdit } from "./form-edit/form-edit";
-type DescriptionType = {
-  task: TaskType;
-  taskUpdate: (task: TaskType) => void;
-};
-export const Description: FC<DescriptionType> = ({ task, taskUpdate }) => {
+import { TaskDetailType } from "../../../../types/modal";
+
+export const Description: FC<TaskDetailType> = ({ task, taskUpdate }) => {
   const [description, setDescription] = useState<string>(task.description);
   // const [isDescription, setIsDescription] = useState<boolean>(
   //   task.description.length > 0 ? true : false

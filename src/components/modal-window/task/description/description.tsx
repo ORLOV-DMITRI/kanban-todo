@@ -26,7 +26,7 @@ export const Description: FC<DescriptionType> = ({ task, taskUpdate }) => {
     taskUpdate(task);
   };
   const formSelection = () => {
-    if (task.description.length) {
+    if (task.description.length > 0) {
       return (
         <FormEdit
           onChangeDescription={handleChangeDescription}

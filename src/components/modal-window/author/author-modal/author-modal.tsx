@@ -8,7 +8,6 @@ export const AuthorModal: FC<AuthorModalType> = ({
   onCloseModal,
 }) => {
   const handleModalClose = () => {
-    console.log("Закрытие окна");
     onCloseModal(isActive);
   };
   return (

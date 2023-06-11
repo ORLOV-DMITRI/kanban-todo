@@ -1,4 +1,4 @@
-import { FC, ChangeEvent, useState } from "react";
+import { FC, ChangeEvent, useState, KeyboardEvent } from "react";
 
 export type FormEditType = {
   onChangeDescription: (e: ChangeEvent<HTMLTextAreaElement>) => void;
@@ -13,6 +13,16 @@ export const FormEdit: FC<FormEditType> = ({
   description,
 }) => {
   const [isEdit, setIsEdit] = useState(false);
+  const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.ctrlKey && e.code === "Enter") {
+      descriptionSave();
+      setIsEdit(!isEdit);
+    }
+    if (e.ctrlKey && e.code === "NumpadEnter") {
+      descriptionSave();
+      setIsEdit(!isEdit);
+    }
+  };
 
   const handleBlur = () => {
     setIsEdit(!isEdit);
@@ -25,6 +35,7 @@ export const FormEdit: FC<FormEditType> = ({
           <textarea
             defaultValue={description}
             onBlur={handleBlur}
+            onKeyDown={handleKeyDown}
             onChange={onChangeDescription}
           />
         </div>

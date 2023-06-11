@@ -1,3 +1,4 @@
+import { type } from "os";
 import { TaskType } from "./global";
 
 export type TaskContextType = {
@@ -16,4 +17,9 @@ export type StatusContextType = {
 };
 export type ProviderType = {
   children: React.ReactNode;
+};
+export type AuthorContextType = {
+  author: string;
+  authorSave: (author: string) => void;
+  authorDelete: () => void;
 };

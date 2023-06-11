@@ -1,14 +1,21 @@
 import { ICONS } from "../../../constants/icons";
 import { AuthorType } from "../../../types/modal";
 import "./author.css";
-import { FC, ChangeEvent } from "react";
+import { FC, ChangeEvent, useContext, useState } from "react";
+import { AuthorContext } from "./../../../context/author/author-context";
 
-export const Author: FC<AuthorType> = ({ setAuthor, author, onCloseModal }) => {
-  const handleAuthorCreation = (e: ChangeEvent<HTMLInputElement>) => {
-    setAuthor(e.target.value);
+export const Author: FC<AuthorType> = ({ setAuthor, onCloseModal }) => {
+  const { author, authorSave } = useContext(AuthorContext);
+  const [currentAuthor, setCurrentAuthor] = useState<string>("");
+  // const handleAuthorCreation = (e: ChangeEvent<HTMLInputElement>) => {
+  //   setAuthor(e.target.value);
+  // };
+  const handleAuthorChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setCurrentAuthor(e.target.value);
   };
 
   const handleCloseModal = () => {
+    authorSave(currentAuthor);
     onCloseModal(false);
   };
 
@@ -31,10 +38,10 @@ export const Author: FC<AuthorType> = ({ setAuthor, author, onCloseModal }) => {
           className="author__input"
           type="text"
           placeholder="Укажите ваше имя"
-          onChange={handleAuthorCreation}
-          value={author}
+          onChange={handleAuthorChange}
+          value={currentAuthor}
         />
-        {author.length > 2 && displayDoneIcon()}
+        {currentAuthor.length > 2 && displayDoneIcon()}
       </div>
     </div>
   );

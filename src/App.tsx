@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./App.css";
 import { Container } from "./components/todo/container/container";
 import { TaskProvider } from "./context/task/task-provider";
@@ -9,6 +9,7 @@ import { TaskModalForm } from "./components/modal-window/task/modal-form/task";
 import { TaskType } from "./types/global";
 import { AuthorModal } from "./components/modal-window/author/author-modal/author-modal";
 import { TaskModal } from "./components/modal-window/task/modal/task-modal";
+import { AuthorContext } from "./context/author/author-context";
 const initTask = {
   id: "123",
   title: "Заголовок Заголовок Заголовок",
@@ -27,9 +28,10 @@ function App() {
   const [currentAuthor, setCurrentAuthor] = useState<string>(
     localStorage.getItem("author") || ""
   );
+  const { author } = useContext(AuthorContext);
   const [isTaskModalActive, setIsTaskModalActive] = useState<boolean>(false);
   const [isAuthorModalActive, setIsAuthorModalActive] = useState<boolean>(
-    currentAuthor ? false : true
+    author ? false : true
   );
 
   const handleTaskModalChange = (newState: boolean) => {
@@ -49,14 +51,6 @@ function App() {
     setIsAuthorModalActive(true);
     setCurrentAuthor("");
     localStorage.removeItem("author");
-  };
-  const checkIsCurrentTask = () => {
-    return (
-      <TaskModal
-        isActive={isTaskModalActive}
-        onCloseModal={handleTaskModalChange}
-      />
-    );
   };
 
   return (
@@ -78,7 +72,10 @@ function App() {
           onDeleteAuthor={handleAuthorDelete}
         />
         <Container onOpenModal={handleTaskModal} />
-        {checkIsCurrentTask()}
+        <TaskModal
+          isActive={isTaskModalActive}
+          onCloseModal={handleTaskModalChange}
+        />
       </div>
     </div>
   );

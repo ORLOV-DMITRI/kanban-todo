@@ -1,12 +1,10 @@
+import { AuthorContext } from "../../context/author/author-context";
 import { HeaderType } from "../../types/header";
 import "./header.css";
-import { FC } from "react";
+import { FC, useContext } from "react";
 
-export const Header: FC<HeaderType> = ({
-  author,
-  displayAuthor,
-  onDeleteAuthor,
-}) => {
+export const Header: FC<HeaderType> = ({ displayAuthor, onDeleteAuthor }) => {
+  const { author } = useContext(AuthorContext);
   return (
     <header className="header">
       <nav className="header__nav">

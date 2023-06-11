@@ -5,10 +5,10 @@ import { TaskProvider } from "./context/task/task-provider";
 import { StatusProvider } from "./context/status/status-provider";
 import { Header } from "./components/header/header";
 import { Author } from "./components/modal-window/author/author";
-import { TaskModalForm } from "./components/modal-window/task/task";
+import { TaskModalForm } from "./components/modal-window/task/modal-form/task";
 import { TaskType } from "./types/global";
 import { AuthorModal } from "./components/modal-window/author/author-modal/author-modal";
-import { TaskModal } from "./components/modal-window/task/task-modal/task-modal";
+import { TaskModal } from "./components/modal-window/task/modal/task-modal";
 const initTask = {
   id: "123",
   title: "Заголовок Заголовок Заголовок",
@@ -31,17 +31,11 @@ function App() {
   const [isAuthorModalActive, setIsAuthorModalActive] = useState<boolean>(
     currentAuthor ? false : true
   );
-  const [currentTask, setCurrentTask] = useState<TaskType>();
-
-  // const onDisplayedTaskChange = (taskId: string) => {
-  //   setDisplayedTaskId(taskId);
-  // };
 
   const handleTaskModalChange = (newState: boolean) => {
     setIsTaskModalActive((prevActive) => !prevActive);
   };
-  const handleTaskModal = (newState: boolean, task: TaskType) => {
-    setCurrentTask(task);
+  const handleTaskModal = (newState: boolean) => {
     setIsTaskModalActive((prevActive) => !prevActive);
   };
   const handleAuthorModalChange = (newState: boolean) => {
@@ -57,15 +51,12 @@ function App() {
     localStorage.removeItem("author");
   };
   const checkIsCurrentTask = () => {
-    if (currentTask) {
-      return (
-        <TaskModal
-          isActive={isTaskModalActive}
-          onCloseModal={handleTaskModalChange}
-          task={currentTask}
-        />
-      );
-    }
+    return (
+      <TaskModal
+        isActive={isTaskModalActive}
+        onCloseModal={handleTaskModalChange}
+      />
+    );
   };
 
   return (

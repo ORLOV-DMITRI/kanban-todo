@@ -1,15 +1,46 @@
-import { FC } from "react";
+import { FC, useState, ChangeEvent, FocusEvent } from "react";
 import { ICONS } from "../../../../constants/icons";
+import { TaskType } from "../../../../types/global";
+import { FormAdd } from "./form-add/form-add";
+import { FormEdit } from "./form-edit/form-edit";
 type DescriptionType = {
-  description: string;
+  task: TaskType;
+  taskUpdate: (task: TaskType) => void;
 };
-export const Description: FC<DescriptionType> = ({ description }) => {
-  const addDescriptionForm = () => {
+export const Description: FC<DescriptionType> = ({ task, taskUpdate }) => {
+  const [description, setDescription] = useState<string>(task.description);
+  // const [isDescription, setIsDescription] = useState<boolean>(
+  //   task.description.length > 0 ? true : false
+  // );
+  // console.log(description);
+
+  const handleChangeDescription = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setDescription(e.target.value);
+  };
+  const descriptionSave = () => {
+    task.description = description;
+    taskUpdate(task);
+  };
+  const descriptionDelete = () => {
+    task.description = "";
+    taskUpdate(task);
+  };
+  const formSelection = () => {
+    if (task.description.length) {
+      return (
+        <FormEdit
+          onChangeDescription={handleChangeDescription}
+          descriptionSave={descriptionSave}
+          descriptionDelete={descriptionDelete}
+          description={description}
+        />
+      );
+    }
     return (
-      <textarea
-        autoFocus
-        placeholder="Добавить более подробное описание"
-      ></textarea>
+      <FormAdd
+        onChangeDescription={handleChangeDescription}
+        descriptionSave={descriptionSave}
+      />
     );
   };
   return (
@@ -17,9 +48,12 @@ export const Description: FC<DescriptionType> = ({ description }) => {
       <div className="task__info">
         {ICONS.description()}
         <h3>Описание</h3>
-        <button>Изменить</button>
       </div>
-      <div>{description.length > 0 ? description : addDescriptionForm()}</div>
+      <div className="description__form">{formSelection()}</div>
+      <div>
+        {/* <button>Сохранить</button>
+        <button>Отмена</button> */}
+      </div>
     </div>
   );
 };

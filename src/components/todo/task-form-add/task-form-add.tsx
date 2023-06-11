@@ -15,19 +15,19 @@ import "./task-form-add.css";
 export const AddTaskForm: FC<AddTaskFormType> = ({ status, onSetIsOpen }) => {
   const { taskAdd } = useContext(TaskContext);
 
-  const [taskTitle, setTaskTitle] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
 
-  const titleTaskChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setTaskTitle(e.target.value);
+  const handleChangeTitle = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setTitle(e.target.value);
   };
-  const submitHandler = (e: MouseEvent | KeyboardEvent) => {
+  const handleSubmitForm = (e: MouseEvent | KeyboardEvent) => {
     e.preventDefault();
 
-    if (taskTitle.trim() === "") return;
+    if (title.trim() === "") return;
 
     const newTask: TaskType = {
       id: v1(),
-      title: taskTitle.trim(),
+      title: title.trim(),
       description: "",
       comment: [],
       status: status,
@@ -36,18 +36,18 @@ export const AddTaskForm: FC<AddTaskFormType> = ({ status, onSetIsOpen }) => {
 
     taskAdd(newTask);
 
-    setTaskTitle("");
+    setTitle("");
     onSetIsOpen();
   };
   //   const focusTextAreaHandler = (e: FocusEvent<HTMLTextAreaElement>) => {
   //     e.target.focus();
   //   };
-  const keyDownSubmitHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.ctrlKey && e.code === "Enter") {
-      submitHandler(e);
+      handleSubmitForm(e);
     }
     if (e.altKey && e.code === "Enter") {
-      submitHandler(e);
+      handleSubmitForm(e);
     }
     if (e.code === "Escape") {
       onSetIsOpen();
@@ -58,9 +58,9 @@ export const AddTaskForm: FC<AddTaskFormType> = ({ status, onSetIsOpen }) => {
     <form className="form">
       <div className="form__input">
         <textarea
-          value={taskTitle}
-          onChange={titleTaskChangeHandler}
-          onKeyDown={keyDownSubmitHandler}
+          value={title}
+          onChange={handleChangeTitle}
+          onKeyDown={handleKeyDown}
           autoFocus
           placeholder="Введите заголовок для этой карточки"
         ></textarea>
@@ -69,7 +69,7 @@ export const AddTaskForm: FC<AddTaskFormType> = ({ status, onSetIsOpen }) => {
         <input
           type="submit"
           value="Добавить карточку"
-          onClick={submitHandler}
+          onClick={handleSubmitForm}
         />
         <button onClick={onSetIsOpen}>&times;</button>
       </div>

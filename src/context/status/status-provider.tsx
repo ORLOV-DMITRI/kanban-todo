@@ -5,7 +5,7 @@ const taskStatuses: string[] = ["TODO", "In Progress", "Testing", "Done"];
 
 export const StatusProvider: FC<ProviderType> = ({ children }) => {
   const [statuses, setStatuses] = useState<string[]>(
-    JSON.parse(localStorage.getItem("statuses") || "")
+    JSON.parse(localStorage.getItem("statuses") || "") || taskStatuses
   );
 
   const statusChange = ({ newStatus, prevStatus }: Statuses) => {

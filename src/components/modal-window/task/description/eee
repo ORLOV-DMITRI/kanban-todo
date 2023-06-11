@@ -1,0 +1,73 @@
+// import { FC, useState, ChangeEvent, FocusEvent } from "react";
+// import { ICONS } from "../../../../constants/icons";
+// import { TaskType } from "../../../../types/global";
+// type DescriptionType = {
+//   task: TaskType;
+//   taskUpdate: (task: TaskType) => void;
+// };
+// export const Description: FC<DescriptionType> = ({ task, taskUpdate }) => {
+//   const [description, setDescription] = useState<string>("");
+//   const [isActiveBtn, setIsActiveBtn] = useState(false);
+//   const [isActiveDescr, setIsActiveDescr] = useState(
+//     task.description.length > 0 ? true : false
+//   );
+
+//   const handleChangeDescription = (e: ChangeEvent<HTMLTextAreaElement>) => {
+//     setDescription(e.target.value);
+//   };
+//   const handleSaveDescription = () => {
+//     if (description.trim() === "") return;
+//     task.description = description;
+//     taskUpdate(task);
+//     setIsActiveDescr((prev) => !prev);
+//   };
+//   const handleCloseForm = () => {};
+//   const handleDisplayButton = () => {
+//     setIsActiveBtn((prevState) => !prevState);
+//     console.log("");
+//   };
+//   const handleOpenForm = () => {
+//     setIsActiveDescr(false);
+//   };
+//   const handleTextSelect = (e: FocusEvent<HTMLTextAreaElement>) =>
+//     (e.target.selectionStart = task.description.length);
+
+//   const buttonFormAdd = () => {
+//     return (
+//       <div>
+//         <button onClick={handleSaveDescription}>Сохранить</button>
+//         <button onClick={handleDisplayButton}>Отмена</button>
+//       </div>
+//     );
+//   };
+//   const descriptionFormAdd = () => {
+//     return (
+//       <div className="description__form">
+//         <textarea
+//           onFocus={handleTextSelect}
+//           value={isActiveDescr ? "" : description}
+//           rows={isActiveBtn ? 6 : 2}
+//           cols={isActiveBtn ? 30 : 20}
+//           onChange={handleChangeDescription}
+//           onClick={handleDisplayButton}
+//           autoFocus
+//           placeholder="Добавить более подробное описание"
+//         ></textarea>
+//         {isActiveBtn && buttonFormAdd()}
+//       </div>
+//     );
+//   };
+//   return (
+//     <div className="task__description">
+//       <div className="task__info">
+//         {ICONS.description()}
+//         <h3>Описание</h3>
+//       </div>
+//       {isActiveDescr ? (
+//         <p onClick={handleOpenForm}>{task.description}</p>
+//       ) : (
+//         descriptionFormAdd()
+//       )}
+//     </div>
+//   );
+// };

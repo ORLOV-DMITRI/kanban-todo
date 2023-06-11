@@ -36,7 +36,7 @@ const initTasks = [
 
 export const TaskProvider: FC<ProviderType> = ({ children }) => {
   const [tasks, setTasks] = useState<TaskType[]>(
-    JSON.parse(localStorage.getItem("tasks") || "") //ЗАБЫЛ КАК ЭТО СДЕЛАТЬ
+    JSON.parse(localStorage.getItem("tasks") || "") || initTasks //ЗАБЫЛ КАК ЭТО СДЕЛАТЬ
   );
 
   useEffect(() => {

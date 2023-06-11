@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: 0.5s;
+  transition: 0.7s;
   pointer-events: none;
 }
 .card-modal.active {
@@ -22,7 +22,7 @@
   background-color: #282e33;
   width: 40vw;
   transform: scale(0.5);
-  transition: 0.4s all;
+  transition: 0.6s all;
 }
 .card-modal__content.active {
   transform: scale(1);

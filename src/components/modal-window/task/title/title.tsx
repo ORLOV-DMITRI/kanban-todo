@@ -5,37 +5,33 @@ import { TaskContext } from "../../../../context/task/task-context";
 
 type TitleType = {
   task: TaskType;
-  onChangeTitle: (title: string) => void;
-  title: string;
+  taskUpdate: (task: TaskType) => void;
 };
 
-export const Title: FC<TitleType> = ({ task, onChangeTitle, title }) => {
-  console.log("Приходит : " + title);
+export const Title: FC<TitleType> = ({ task, taskUpdate }) => {
   const handleTextSelect = (e: FocusEvent<HTMLInputElement>) =>
     e.target.select();
+
   const handleKeyEvent = (e: any) => {
     if (e.code === "Enter" || e.code === "NumpadEnter") {
       e.target.blur();
     }
   };
-  // const handleSaveTitle = () => {
-  //   task.title = newTitle;
-  //   taskUpdate(task);
-  // };
-  const handleChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
-    onChangeTitle(e.target.value);
+  const handleSaveTitle = (e: FocusEvent<HTMLInputElement>) => {
+    task.title = e.target.value;
+    taskUpdate(task);
   };
+
   return (
     <div className="task__title">
       {ICONS.title()}
       <div className="task__title-input">
         <input
           type="text"
-          value={title}
+          defaultValue={task.title}
           onFocus={handleTextSelect}
           onKeyDown={handleKeyEvent}
-          onChange={handleChangeTitle}
-          // onBlur={handleSaveTitle}
+          onBlur={handleSaveTitle}
         />
       </div>
     </div>

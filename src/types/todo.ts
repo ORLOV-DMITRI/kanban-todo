@@ -1,11 +1,11 @@
 import { TaskType } from "./global";
 
 export type ContainerType = {
-  onOpenModal: (newState: boolean, task: TaskType) => void;
+  onOpenModal: (newState: boolean) => void;
 };
 export type ColumnType = {
   status: string;
-  onOpenModal: (newState: boolean, task: TaskType) => void;
+  onOpenModal: (newState: boolean) => void;
 };
 export type StatusType = {
   status: string;
@@ -13,7 +13,7 @@ export type StatusType = {
 };
 export type CardType = {
   task: TaskType;
-  onOpenModal: (newState: boolean, task: TaskType) => void;
+  onOpenModal: (newState: boolean) => void;
 };
 export type AddTaskType = {
   status: string;

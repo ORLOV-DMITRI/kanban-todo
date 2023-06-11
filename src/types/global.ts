@@ -10,4 +10,5 @@ export type TaskType = {
   comment: Array<Comment>;
   status: string;
   author: string;
+  isActive?: boolean;
 };

@@ -1,4 +1,4 @@
-import { FC, ChangeEvent, useState, KeyboardEvent } from "react";
+import { FC, ChangeEvent, useState, KeyboardEvent, FocusEvent } from "react";
 
 export type FormEditType = {
   onChangeDescription: (e: ChangeEvent<HTMLTextAreaElement>) => void;
@@ -34,9 +34,10 @@ export const FormEdit: FC<FormEditType> = ({
   };
   if (isEdited) {
     return (
-      <div>
+      <div className="description__edit">
         <div>
           <textarea
+            className="description__textarea"
             defaultValue={description}
             onBlur={handleBlur}
             onKeyDown={handleKeyDown}
@@ -44,20 +45,36 @@ export const FormEdit: FC<FormEditType> = ({
           />
         </div>
         <div>
-          <button onClick={handleSaveDescription}>Сохранить</button>
-          <button onClick={() => setIsEdited(!isEdited)}>Отменить</button>
+          <button
+            className="description__btn-done"
+            onClick={handleSaveDescription}
+          >
+            Сохранить
+          </button>
+          <button
+            className="description__btn-cancel"
+            onClick={handleSaveDescription}
+          >
+            Отменить
+          </button>
         </div>
       </div>
     );
   }
 
   return (
-    <div>
-      <div></div>
-      <p>{description}</p>
+    <div className="description__text">
+      <p onClick={() => setIsEdited(!isEdited)}>{description}</p>
       <div>
-        <button onClick={() => setIsEdited(!isEdited)}>Изменить</button>
-        <button onClick={descriptionDelete}>Удалить</button>
+        <button
+          className="description__btn-done"
+          onClick={() => setIsEdited(!isEdited)}
+        >
+          Изменить
+        </button>
+        <button className="description__btn-cancel" onClick={descriptionDelete}>
+          Удалить
+        </button>
       </div>
     </div>
   );

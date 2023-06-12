@@ -8,10 +8,10 @@ import { CommentsContext } from "./comments-context";
 export const CommentsProvider: FC<ProviderType> = ({ children }) => {
   const { tasks, taskUpdate } = useContext(TaskContext);
 
-  const commentSave = (task: TaskType, comment: string) => {
+  const commentSave = (task: TaskType, comment: string, author: string) => {
     const newComment: CommentType = {
       id: v1(),
-      author: task.author,
+      author: author,
       text: comment,
     };
     task.comments = [newComment, ...task.comments];

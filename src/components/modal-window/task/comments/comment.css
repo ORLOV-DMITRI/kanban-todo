@@ -1,32 +1,148 @@
+.comment__title {
+  position: relative;
+  color: #b6c2cf;
+  margin-bottom: 20px;
+}
+.comment__title span {
+  position: absolute;
+  left: -35px;
+  top: 0;
+}
+.comment__form p {
+  cursor: pointer;
+}
+.comment__form p:hover {
+  background-color: #4e5c6b;
+}
+.comment__form textarea {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #38414a;
+  color: #b6c2cf;
+  resize: none;
+  font-size: 14px;
+  line-height: 20px;
+  outline: none;
+  border: none;
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+.comment__form p {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #38414a;
+  color: #b6c2cf;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 5px;
+}
+.comment__form textarea::placeholder {
+  color: #b6c2cf;
+}
 .comment__form {
   position: relative;
 }
+.comment__form button {
+  background-color: #579dff;
+  color: #1d2125;
+  padding: 6px 12px;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  line-height: 17px;
+  cursor: pointer;
+  margin-right: 6px;
+}
+.comment__icon {
+  background-color: #38414a;
+  position: absolute;
+  top: -3px;
+  border: 1px solid black;
+  border-radius: 27px;
+  padding: 10px;
+  left: -56px;
+  width: 47px;
+  height: 47px;
+}
 .comment__avatar {
-  top: 0;
-  width: 25px;
-  height: 25px;
+  display: block;
   background-image: url(/public/img/user.png);
   background-size: contain;
   object-fit: contain;
   background-repeat: no-repeat;
-  position: absolute;
-  left: -25px;
+  width: 25px;
+  height: 25px;
 }
 .avatar__form {
   position: absolute;
   left: -25px;
 }
+
+.comment__new {
+  position: relative;
+  margin-bottom: 30px;
+}
 .comment__list {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 15px;
+  overflow-y: auto;
+  max-height: 35vh;
+  padding: 5px;
+  background-color: #38414a70;
+  border-radius: 9px;
+}
+.comment__list p {
+  width: 95%;
+  height: 100%;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #38414a;
+  color: #b6c2cf;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.comment__list::-webkit-scrollbar {
+  width: 8px;
+}
+.comment__list::-webkit-scrollbar-track {
+  background: #101204;
+  border-radius: 10px;
+}
+.comment__list::-webkit-scrollbar-thumb {
+  background-color: #38414a; /* цвет бегунка */
+  border-radius: 20px; /* округлось бегунка */
+  height: 20px;
 }
 .comment__list li {
   position: relative;
+  width: 100%;
   display: flex;
+  flex-direction: column;
   align-self: flex-start;
-  gap: 10px;
 }
-.comment__new {
-  position: relative;
+.comment__list h5 {
+  color: #b6c2cf;
+  margin-bottom: 2px;
+  margin-left: 5px;
+}
+.comment__list button {
+  background-color: inherit;
+  color: #b6c2cf99;
+  outline: none;
+  border: none;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  line-height: 15px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.comment__list .comment__icon {
+  top: 14px;
 }

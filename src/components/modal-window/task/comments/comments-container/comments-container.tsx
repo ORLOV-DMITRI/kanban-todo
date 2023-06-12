@@ -7,17 +7,38 @@ import "../comment.css";
 import { CommentsProvider } from "../../../../../context/comments/comments-provider";
 
 export const CommentsContainer: FC<TaskDetailType> = ({ task }) => {
+  const [isOpenForm, setIsOpenForm] = useState<boolean>(false);
+
+  const handleChangeFormState = (newState: boolean) => {
+    setIsOpenForm(newState);
+  };
+  const selectedForm = () => {
+    if (isOpenForm) {
+      return (
+        <CommentFormAdd task={task} onChangeForm={handleChangeFormState} />
+      );
+    }
+    return (
+      <p onClick={() => handleChangeFormState(true)}>Напишите комментарий...</p>
+    );
+  };
   return (
     <CommentsProvider>
       <div className="comment">
         <div className="comment__title">
-          {ICONS.comment()}
-          <h3>Коментарии</h3>
+          {ICONS.commentAdd()}
+          <h3>Комментарии</h3>
         </div>
-        <CommentFormAdd task={task} />
-        <div className="comment__all">
-          <CommentsList task={task} />
+        <div className="comment__new">
+          <div className="comment__form">
+            <div className="comment__icon">
+              <span className="comment__avatar"></span>
+            </div>
+            {selectedForm()}
+          </div>
         </div>
+
+        <CommentsList task={task} />
       </div>
     </CommentsProvider>
   );

@@ -4,6 +4,7 @@ import { FormAdd } from "./form-add/form-add";
 import { FormEdit } from "./form-edit/form-edit";
 import { TaskDetailType } from "../../../../types/modal";
 import { TaskContext } from "../../../../context/task/task-context";
+import "./description.css";
 
 export const Description: FC<TaskDetailType> = ({ task }) => {
   const [description, setDescription] = useState<string>(task.description);
@@ -12,6 +13,7 @@ export const Description: FC<TaskDetailType> = ({ task }) => {
   const handleChangeDescription = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(e.target.value);
   };
+
   const descriptionSave = () => {
     task.description = description;
     taskUpdate(task);
@@ -36,16 +38,19 @@ export const Description: FC<TaskDetailType> = ({ task }) => {
       <FormAdd
         onChangeDescription={handleChangeDescription}
         descriptionSave={descriptionSave}
+        description={description}
       />
     );
   };
   return (
-    <div className="task__description">
-      <div className="task__info">
+    <div className="description">
+      <div className="description__info">
         {ICONS.description()}
         <h3>Описание</h3>
+
+        <div className="description__form">{formSelection()}</div>
       </div>
-      <div className="description__form">{formSelection()}</div>
+
       <div>
         {/* <button>Сохранить</button>
         <button>Отмена</button> */}

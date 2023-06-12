@@ -17,7 +17,7 @@ function App() {
     author ? false : true
   );
 
-  const handleTaskModalOpen = () => {
+  const handleTaskModalStateChange = () => {
     setIsTaskModalState((prevState) => !prevState);
   };
   const handleAuthorModalStateChange = (newState: boolean) => {
@@ -37,10 +37,10 @@ function App() {
           displayAuthor={isAuthorModalState}
           setModalState={handleAuthorModalStateChange}
         />
-        <Container onOpenModal={handleTaskModalOpen} />
+        <Container onOpenModal={handleTaskModalStateChange} />
         <TaskModal
           isActive={isTaskModalState}
-          onCloseModal={handleTaskModalOpen}
+          onCloseModal={handleTaskModalStateChange}
         />
       </div>
     </div>

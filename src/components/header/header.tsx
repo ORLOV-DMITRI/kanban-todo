@@ -3,15 +3,12 @@ import { HeaderType } from "../../types/header";
 import "./header.css";
 import { FC, useContext } from "react";
 
-export const Header: FC<HeaderType> = ({
-  displayAuthor,
-  onAuthorModalChange,
-}) => {
+export const Header: FC<HeaderType> = ({ displayAuthor, setModalState }) => {
   const { author, authorDelete } = useContext(AuthorContext);
 
   const handleAuthorDelete = () => {
     authorDelete();
-    onAuthorModalChange(true);
+    setModalState(true);
   };
   return (
     <header className="header">

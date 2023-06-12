@@ -10,7 +10,8 @@ type CommentItem = {
 export const CommentItem: FC<CommentItem> = ({ comment, task }) => {
   const [isEdited, setIsEdited] = useState(false);
   const { commentDelete } = useContext(CommentsContext);
-
+  const { author } = useContext(AuthorContext);
+  console.log(task);
   const openEditForm = () => {
     setIsEdited(true);
   };
@@ -31,9 +32,8 @@ export const CommentItem: FC<CommentItem> = ({ comment, task }) => {
 
   return (
     <li>
-      <div className="comment__avatar"></div>
-      <h4>{task.author}</h4>
-      {comment.text}
+      <h5>Автор: {comment.author}</h5>
+      <p>{comment.text}</p>
       <div>
         <button onClick={openEditForm}>Изменить</button>
         <button onClick={handleDeleteComment}>Удалить</button>

@@ -32,6 +32,14 @@ export const Title: FC<TaskDetailType> = ({ task }) => {
           onBlur={handleSaveTitle}
         />
       </div>
+      <div className="task__title-info">
+        <div>
+          В колонке:<h4>{task.status}</h4>
+        </div>
+        <div>
+          Автор:<h4>{task.author}</h4>
+        </div>
+      </div>
     </div>
   );
 };

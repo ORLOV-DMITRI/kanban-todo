@@ -23,7 +23,7 @@ html {
   box-sizing: inherit;
 }
 
-ul[class],
+ul,
 ol[class] {
   padding: 0;
 }

@@ -1,9 +1,8 @@
-import { FC, useState, useContext, ChangeEvent, useEffect } from "react";
+import { FC, useContext, KeyboardEvent } from "react";
 import "../../modal.css";
 import { TaskModalType } from "../../../../types/modal";
 import { TaskModalForm } from "../modal-form/task";
 import { TaskContext } from "../../../../context/task/task-context";
-import { TaskType } from "../../../../types/global";
 
 export const TaskModal: FC<TaskModalType> = ({ isActive, onCloseModal }) => {
   const { tasks, taskUpdate } = useContext(TaskContext);
@@ -15,7 +14,6 @@ export const TaskModal: FC<TaskModalType> = ({ isActive, onCloseModal }) => {
       filteredTask.isActive = false;
       taskUpdate(filteredTask);
     }
-
     onCloseModal(isActive);
   };
   return (
@@ -25,11 +23,17 @@ export const TaskModal: FC<TaskModalType> = ({ isActive, onCloseModal }) => {
     >
       <div
         className={
-          isActive ? "card-modal__content active" : "card-modal__content"
+          isActive
+            ? "card-modal__content task-modal active"
+            : "card-modal__content"
         }
         onClick={(e) => e.stopPropagation()}
       >
-        {filteredTask ? <TaskModalForm task={filteredTask} /> : ""}
+        {filteredTask ? (
+          <TaskModalForm task={filteredTask} onCloseModal={handleModalClose} />
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

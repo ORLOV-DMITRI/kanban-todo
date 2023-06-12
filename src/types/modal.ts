@@ -15,5 +15,4 @@ export type AuthorType = {
 };
 export type TaskDetailType = {
   task: TaskType;
-  taskUpdate: (task: TaskType) => void;
 };

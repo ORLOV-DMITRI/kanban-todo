@@ -4,9 +4,8 @@
   align-items: center;
   /*  */
   flex: 0 0 23%;
-  padding: 10px 7px 20px 7px;
+  padding: 10px 7px 7px 7px;
   border-radius: 10px;
-  gap: 30px;
   border: 2px solid black;
   /*  */
   background-color: #2b2c28;
@@ -18,6 +17,7 @@
 }
 
 .todo__lists {
+  max-height: 45vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,6 +25,19 @@
   width: 100%;
   gap: 10px;
   margin-bottom: 30px;
+  overflow-y: auto;
+}
+.todo__lists::-webkit-scrollbar {
+  width: 8px;
+}
+.todo__lists::-webkit-scrollbar-track {
+  background: #101204;
+  border-radius: 10px;
+}
+.todo__lists::-webkit-scrollbar-thumb {
+  background-color: #38414a; /* цвет бегунка */
+  border-radius: 20px; /* округлось бегунка */
+  height: 20px;
 }
 .todo__lists li {
   width: 90%;

@@ -1,5 +1,9 @@
 .form {
   width: 90%;
+  padding-top: 20px;
+}
+.form__input {
+  padding-bottom: 5px;
 }
 .form__input textarea {
   width: 100%;
@@ -30,4 +34,17 @@
 }
 .form__btn input:hover {
   background-color: #85b8ff;
+}
+.form__btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.form__btn button {
+  border: none;
+  background-color: inherit;
+  color: #101204;
+  cursor: pointer;
+  padding: 0;
+  transform: scale(2);
 }

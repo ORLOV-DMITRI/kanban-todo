@@ -23,6 +23,10 @@ export const FormEdit: FC<FormEditType> = ({
       setIsEdited(!isEdited);
     }
   };
+  const handleSaveDescription = () => {
+    descriptionSave();
+    setIsEdited(!isEdited);
+  };
 
   const handleBlur = () => {
     setIsEdited(!isEdited);
@@ -40,7 +44,7 @@ export const FormEdit: FC<FormEditType> = ({
           />
         </div>
         <div>
-          <button onClick={descriptionSave}>Сохранить</button>
+          <button onClick={handleSaveDescription}>Сохранить</button>
           <button onClick={() => setIsEdited(!isEdited)}>Отменить</button>
         </div>
       </div>

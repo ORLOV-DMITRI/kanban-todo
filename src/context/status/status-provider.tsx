@@ -4,8 +4,12 @@ import { StatusContext } from "./status-context";
 const taskStatuses: string[] = ["TODO", "In Progress", "Testing", "Done"];
 
 export const StatusProvider: FC<ProviderType> = ({ children }) => {
+  if (localStorage.getItem("statuses") === null) {
+    localStorage.setItem("statuses", JSON.stringify(taskStatuses));
+  }
+
   const [statuses, setStatuses] = useState<string[]>(
-    JSON.parse(localStorage.getItem("statuses") || "") || taskStatuses
+    JSON.parse(localStorage.getItem("statuses") || "")
   );
 
   const statusChange = ({ newStatus, prevStatus }: Statuses) => {

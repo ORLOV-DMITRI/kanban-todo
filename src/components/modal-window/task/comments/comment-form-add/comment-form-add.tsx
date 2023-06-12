@@ -1,27 +1,21 @@
-import { FC, ChangeEvent, useState, useContext } from "react";
+import { FC, useState, useContext, ChangeEvent } from "react";
 import { CommentsContext } from "../../../../../context/comments/comments-context";
 import { TaskType } from "../../../../../types/global";
 
 type CommentFormType = {
-  // comment: string;
-  // onChangeComment: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  // onSaveComment: () => void;
   task: TaskType;
 };
 
-export const CommentFormAdd: FC<CommentFormType> = ({
-  // comment,
-  // onChangeComment,
-  // onSaveComment,
-  task,
-}) => {
+export const CommentFormAdd: FC<CommentFormType> = ({ task }) => {
   const { commentSave } = useContext(CommentsContext);
   const [comment, setComment] = useState<string>("");
-  const handleChangeComment = (e: any) => {
+
+  const handleChangeComment = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setComment(e.target.value);
   };
-  const onSaveComment = () => {
+  const handleSaveComment = () => {
     commentSave(task, comment);
+    setComment("");
   };
 
   return (
@@ -33,7 +27,7 @@ export const CommentFormAdd: FC<CommentFormType> = ({
       <div>
         <button
           disabled={comment.length > 0 ? false : true}
-          onClick={onSaveComment}
+          onClick={handleSaveComment}
         >
           Сохранить
         </button>

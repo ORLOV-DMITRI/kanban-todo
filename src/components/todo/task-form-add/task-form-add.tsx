@@ -11,9 +11,12 @@ import { AddTaskFormType } from "../../../types/todo";
 import { TaskContext } from "../../../context/task/task-context";
 import { v1 } from "uuid";
 import "./task-form-add.css";
+import { AuthorContext } from "../../../context/author/author-context";
+import { ICONS } from "../../../constants/icons";
 
 export const AddTaskForm: FC<AddTaskFormType> = ({ status, onSetIsOpen }) => {
   const { taskAdd } = useContext(TaskContext);
+  const { author } = useContext(AuthorContext);
 
   const [title, setTitle] = useState<string>("");
 
@@ -31,7 +34,7 @@ export const AddTaskForm: FC<AddTaskFormType> = ({ status, onSetIsOpen }) => {
       description: "",
       comments: [],
       status: status,
-      author: "Dimas",
+      author: author,
     };
 
     taskAdd(newTask);
@@ -61,6 +64,7 @@ export const AddTaskForm: FC<AddTaskFormType> = ({ status, onSetIsOpen }) => {
           value={title}
           onChange={handleChangeTitle}
           onKeyDown={handleKeyDown}
+          // onBlur={onSetIsOpen}
           autoFocus
           placeholder="Введите заголовок для этой карточки"
         ></textarea>
@@ -71,7 +75,7 @@ export const AddTaskForm: FC<AddTaskFormType> = ({ status, onSetIsOpen }) => {
           value="Добавить карточку"
           onClick={handleSubmitForm}
         />
-        <button onClick={onSetIsOpen}>&times;</button>
+        <button onClick={onSetIsOpen}>{ICONS.delete()}</button>
       </div>
     </form>
   );

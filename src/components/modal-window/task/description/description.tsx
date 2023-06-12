@@ -1,16 +1,13 @@
-import { FC, useState, ChangeEvent, FocusEvent } from "react";
+import { FC, useState, ChangeEvent, FocusEvent, useContext } from "react";
 import { ICONS } from "../../../../constants/icons";
-import { TaskType } from "../../../../types/global";
 import { FormAdd } from "./form-add/form-add";
 import { FormEdit } from "./form-edit/form-edit";
 import { TaskDetailType } from "../../../../types/modal";
+import { TaskContext } from "../../../../context/task/task-context";
 
-export const Description: FC<TaskDetailType> = ({ task, taskUpdate }) => {
+export const Description: FC<TaskDetailType> = ({ task }) => {
   const [description, setDescription] = useState<string>(task.description);
-  // const [isDescription, setIsDescription] = useState<boolean>(
-  //   task.description.length > 0 ? true : false
-  // );
-  // console.log(description);
+  const { taskUpdate } = useContext(TaskContext);
 
   const handleChangeDescription = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(e.target.value);
@@ -22,6 +19,7 @@ export const Description: FC<TaskDetailType> = ({ task, taskUpdate }) => {
   const descriptionDelete = () => {
     task.description = "";
     taskUpdate(task);
+    setDescription("");
   };
   const formSelection = () => {
     if (task.description.length > 0) {

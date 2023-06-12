@@ -5,6 +5,7 @@ import { Title } from "../title/title";
 import { Description } from "../description/description";
 import { TaskType } from "../../../../types/global";
 import { CommentsContainer } from "../comments/comments-container/comments-container";
+import { AuthorContext } from "../../../../context/author/author-context";
 
 type TaskModalFormType = {
   task: TaskType;
@@ -16,7 +17,7 @@ export const TaskModalForm: FC<TaskModalFormType> = ({ task }) => {
   return (
     <div className="task">
       <div className="task__container">
-        <Title task={task} taskUpdate={taskUpdate} />
+        <Title task={task} />
         <div>
           <p>
             в колонке <span>{task.status}</span>
@@ -25,8 +26,8 @@ export const TaskModalForm: FC<TaskModalFormType> = ({ task }) => {
             Автор: <span>{task.author}</span>
           </p>
         </div>
-        <Description task={task} taskUpdate={taskUpdate} />
-        <CommentsContainer task={task} taskUpdate={taskUpdate} />
+        <Description task={task} />
+        <CommentsContainer task={task} />
       </div>
       {/* <button onClick={handleModalClose}>{ICONS.delete()}</button> */}
     </div>

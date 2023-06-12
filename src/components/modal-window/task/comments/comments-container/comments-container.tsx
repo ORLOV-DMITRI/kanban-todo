@@ -4,32 +4,9 @@ import { CommentsList } from "../comments-list/comments-list";
 import { ICONS } from "../../../../../constants/icons";
 import { TaskDetailType } from "../../../../../types/modal";
 import "../comment.css";
-import { CommentType } from "../../../../../types/global";
-import { v1 } from "uuid";
-import { CommentsContext } from "../../../../../context/comments/comments-context";
 import { CommentsProvider } from "../../../../../context/comments/comments-provider";
 
-export const CommentsContainer: FC<TaskDetailType> = ({ task, taskUpdate }) => {
-  const [comment, setComment] = useState<string>("");
-
-  // const commentSave = () => {
-  //   const newComment: CommentType = {
-  //     id: v1(),
-  //     author: task.author,
-  //     text: comment,
-  //   };
-  //   task.comments = [newComment, ...task.comments];
-  //   taskUpdate(task);
-  //   setComment("");
-  // };
-  // const commentDelete = (id: string) => {
-  //   task.comments.filter((comment) => comment.id !== id);
-  //   taskUpdate(task);
-  // };
-  // const handleChangeComment = (e: ChangeEvent<HTMLTextAreaElement>) => {
-  //   setComment(e.target.value);
-  // };
-
+export const CommentsContainer: FC<TaskDetailType> = ({ task }) => {
   return (
     <CommentsProvider>
       <div className="comment">
@@ -37,14 +14,9 @@ export const CommentsContainer: FC<TaskDetailType> = ({ task, taskUpdate }) => {
           {ICONS.comment()}
           <h3>Коментарии</h3>
         </div>
-        <CommentFormAdd
-          task={task}
-          // comment={comment}
-          // onChangeComment={handleChangeComment}
-          // onSaveComment={commentSave}
-        />
+        <CommentFormAdd task={task} />
         <div className="comment__all">
-          <CommentsList task={task} onDeleteComment={setComment} />
+          <CommentsList task={task} />
         </div>
       </div>
     </CommentsProvider>

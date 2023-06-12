@@ -1,7 +1,7 @@
 import { ICONS } from "../../../constants/icons";
 import { AuthorType } from "../../../types/modal";
 import "./author.css";
-import { FC, ChangeEvent, useContext, useState } from "react";
+import { FC, ChangeEvent, useContext, useState, KeyboardEvent } from "react";
 import { AuthorContext } from "./../../../context/author/author-context";
 
 export const Author: FC<AuthorType> = ({ onCloseModal }) => {
@@ -12,15 +12,20 @@ export const Author: FC<AuthorType> = ({ onCloseModal }) => {
     setCurrentAuthor(e.target.value);
   };
 
-  const handleCloseModal = () => {
+  const handleSaveAndClose = () => {
     authorSave(currentAuthor);
     onCloseModal(false);
     setCurrentAuthor("");
   };
+  const handleKeyEvent = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.code === "Enter" || e.code === "NumpadEnter") {
+      handleSaveAndClose();
+    }
+  };
 
   const displayDoneIcon = () => {
     return (
-      <button type="submit" onClick={handleCloseModal}>
+      <button type="submit" onClick={handleSaveAndClose}>
         {ICONS.done()}
       </button>
     );
@@ -39,6 +44,7 @@ export const Author: FC<AuthorType> = ({ onCloseModal }) => {
           placeholder="Укажите ваше имя"
           onChange={handleAuthorChange}
           value={currentAuthor}
+          onKeyDown={handleKeyEvent}
         />
         {currentAuthor.length > 2 && displayDoneIcon()}
       </div>

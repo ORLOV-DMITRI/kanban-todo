@@ -19,23 +19,27 @@ const initTask = {
 };
 const initTasks = [
   {
-    id: "123",
-    title: "Заголовок Заголовок Заголовок",
-    description: "Описание Описание Описание Описание Описание",
-    comment: [
+    id: "",
+    title: "",
+    description: "",
+    comments: [
       {
-        id: "111",
-        text: "Комент 1 Комент 1 Комент 1 Комент 1 Комент 1",
-        author: "DImas",
+        id: "",
+        text: "",
+        author: "",
       },
     ],
-    status: "TODO",
-    author: "Dimas",
+    status: "init",
+    author: "",
   },
 ];
+
 export const TaskProvider: FC<ProviderType> = ({ children }) => {
+  if (localStorage.getItem("tasks") == null) {
+    localStorage.setItem("tasks", JSON.stringify(initTasks));
+  }
   const [tasks, setTasks] = useState<TaskType[]>(
-    JSON.parse(localStorage.getItem("tasks") || "") || initTasks //ЗАБЫЛ КАК ЭТО СДЕЛАТЬ
+    JSON.parse(localStorage.getItem("tasks") || "")
   );
 
   useEffect(() => {

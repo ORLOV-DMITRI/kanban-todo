@@ -4,12 +4,9 @@ import { TaskContext } from "../task/task-context";
 import { CommentType, TaskType } from "../../types/global";
 import { v1 } from "uuid";
 import { CommentsContext } from "./comments-context";
-const taskStatuses: string[] = ["TODO", "In Progress", "Testing", "Done"];
 
 export const CommentsProvider: FC<ProviderType> = ({ children }) => {
   const { tasks, taskUpdate } = useContext(TaskContext);
-
-  const [comment, setComment] = useState<string>();
 
   const commentSave = (task: TaskType, comment: string) => {
     const newComment: CommentType = {
@@ -29,7 +26,10 @@ export const CommentsProvider: FC<ProviderType> = ({ children }) => {
     });
   };
   const commentDelete = (task: TaskType, id: string) => {
-    task.comments.filter((comment) => comment.id !== id);
+    const filteredComments = task.comments.filter(
+      (comment) => comment.id !== id
+    );
+    task.comments = filteredComments;
     taskUpdate(task);
   };
 

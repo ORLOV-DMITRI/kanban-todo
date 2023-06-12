@@ -4,20 +4,20 @@ import { AuthorModalType } from "../../../../types/modal";
 
 export const AuthorModal: FC<AuthorModalType> = ({
   children,
-  isActive,
-  onCloseModal,
+  currentState,
+  onChangeState,
 }) => {
-  const handleModalClose = () => {
-    onCloseModal(isActive);
+  const handleChangeState = () => {
+    onChangeState(currentState);
   };
   return (
     <div
-      className={isActive ? "card-modal active" : "card-modal"}
-      onClick={handleModalClose}
+      className={currentState ? "card-modal active" : "card-modal"}
+      onClick={handleChangeState}
     >
       <div
         className={
-          isActive ? "card-modal__content active" : "card-modal__content"
+          currentState ? "card-modal__content active" : "card-modal__content"
         }
         onClick={(e) => e.stopPropagation()}
       >

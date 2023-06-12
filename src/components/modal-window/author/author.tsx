@@ -4,28 +4,28 @@ import "./author.css";
 import { FC, ChangeEvent, useContext, useState, KeyboardEvent } from "react";
 import { AuthorContext } from "./../../../context/author/author-context";
 
-export const Author: FC<AuthorType> = ({ onCloseModal }) => {
+export const Author: FC<AuthorType> = ({ onModalStateChange }) => {
   const { authorSave } = useContext(AuthorContext);
   const [currentAuthor, setCurrentAuthor] = useState<string>("");
 
-  const handleAuthorChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCurrentAuthor(e.target.value);
   };
 
-  const handleSaveAndClose = () => {
+  const handleAuthorSave = () => {
     authorSave(currentAuthor);
-    onCloseModal(false);
+    onModalStateChange(false);
     setCurrentAuthor("");
   };
   const handleKeyEvent = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.code === "Enter" || e.code === "NumpadEnter") {
-      handleSaveAndClose();
+      handleAuthorSave();
     }
   };
 
   const displayDoneIcon = () => {
     return (
-      <button type="submit" onClick={handleSaveAndClose}>
+      <button type="submit" onClick={handleAuthorSave}>
         {ICONS.done()}
       </button>
     );
@@ -42,7 +42,7 @@ export const Author: FC<AuthorType> = ({ onCloseModal }) => {
           className="author__input"
           type="text"
           placeholder="Укажите ваше имя"
-          onChange={handleAuthorChange}
+          onChange={handleChange}
           value={currentAuthor}
           onKeyDown={handleKeyEvent}
         />

@@ -35,7 +35,6 @@
 
 .todo__card:hover {
   filter: brightness(120%);
-  /* transform: scale(1.05); */
 }
 .todo__card-info {
   display: flex;

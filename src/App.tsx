@@ -6,52 +6,41 @@ import { Author } from "./components/modal-window/author/author";
 import { AuthorModal } from "./components/modal-window/author/author-modal/author-modal";
 import { TaskModal } from "./components/modal-window/task/modal/task-modal";
 import { AuthorContext } from "./context/author/author-context";
-const initTask = {
-  id: "123",
-  title: "Заголовок Заголовок Заголовок",
-  description: "Описание Описание Описание Описание Описание",
-  comments: [
-    {
-      id: "111",
-      text: "Комент 1 Комент 1 Комент 1 Комент 1 Комент 1",
-      author: "DImas",
-    },
-  ],
-  status: "TODO",
-  author: "Dimas",
-};
+// has есть ли
+// is
 function App() {
   const { author } = useContext(AuthorContext);
 
-  const [isTaskModalActive, setIsTaskModalActive] = useState<boolean>(false);
-  const [isAuthorModalActive, setIsAuthorModalActive] = useState<boolean>(
+  const [isTaskModalState, setIsTaskModalState] = useState<boolean>(false);
+
+  const [isAuthorModalState, setIsAuthorModalState] = useState<boolean>(
     author ? false : true
   );
 
-  const handleTaskModal = (newState: boolean) => {
-    setIsTaskModalActive((prevActive) => !prevActive);
+  const handleTaskModalOpen = () => {
+    setIsTaskModalState((prevState) => !prevState);
   };
-  const handleAuthorModalChange = (newState: boolean) => {
-    setIsAuthorModalActive(newState);
+  const handleAuthorModalStateChange = (newState: boolean) => {
+    setIsAuthorModalState(newState);
   };
 
   return (
     <div>
       <AuthorModal
-        isActive={isAuthorModalActive}
-        onCloseModal={handleAuthorModalChange}
+        currentState={isAuthorModalState}
+        onChangeState={handleAuthorModalStateChange}
       >
-        <Author onCloseModal={handleAuthorModalChange} />
+        <Author onModalStateChange={handleAuthorModalStateChange} />
       </AuthorModal>
       <div className="container">
         <Header
-          displayAuthor={isAuthorModalActive}
-          onAuthorModalChange={handleAuthorModalChange}
+          displayAuthor={isAuthorModalState}
+          setModalState={handleAuthorModalStateChange}
         />
-        <Container onOpenModal={handleTaskModal} />
+        <Container onOpenModal={handleTaskModalOpen} />
         <TaskModal
-          isActive={isTaskModalActive}
-          onCloseModal={handleTaskModal}
+          isActive={isTaskModalState}
+          onCloseModal={handleTaskModalOpen}
         />
       </div>
     </div>

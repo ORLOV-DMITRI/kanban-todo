@@ -2,8 +2,8 @@ import { ReactNode, ChangeEvent } from "react";
 import { TaskType } from "./global";
 
 export type AuthorModalType = {
-  isActive: boolean;
-  onCloseModal: (newState: boolean) => void;
+  currentState: boolean;
+  onChangeState: (newState: boolean) => void;
   children: ReactNode;
 };
 export type TaskModalType = {
@@ -11,7 +11,7 @@ export type TaskModalType = {
   onCloseModal: (newState: boolean) => void;
 };
 export type AuthorType = {
-  onCloseModal: (newStatus: boolean) => void;
+  onModalStateChange: (newStatus: boolean) => void;
 };
 export type TaskDetailType = {
   task: TaskType;

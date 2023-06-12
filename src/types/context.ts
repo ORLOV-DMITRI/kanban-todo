@@ -23,4 +23,8 @@ export type AuthorContextType = {
   authorSave: (author: string) => void;
   authorDelete: () => void;
 };
-export type CommentsContextType = {};
+export type CommentsContextType = {
+  commentSave: (task: TaskType, comment: string) => void;
+  commentUpdate: (task: TaskType, newComment: string, id: string) => void;
+  commentDelete: (task: TaskType, id: string) => void;
+};

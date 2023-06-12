@@ -1,27 +1,43 @@
 import { FC, useContext, useEffect, useMemo, useState } from "react";
 import { ProviderType, Statuses } from "../../types/context";
 import { TaskContext } from "../task/task-context";
-import { CommentType } from "../../types/global";
+import { CommentType, TaskType } from "../../types/global";
+import { v1 } from "uuid";
+import { CommentsContext } from "./comments-context";
 const taskStatuses: string[] = ["TODO", "In Progress", "Testing", "Done"];
 
 export const CommentsProvider: FC<ProviderType> = ({ children }) => {
-  const { tasks } = useContext(TaskContext);
+  const { tasks, taskUpdate } = useContext(TaskContext);
 
-  const [comments, setComments] = useState<CommentType>();
+  const [comment, setComment] = useState<string>();
 
-  const statusChange = ({ newStatus, prevStatus }: Statuses) => {
-    const currentIndexOfDeletedStatus = statuses.indexOf(prevStatus);
-    statuses[currentIndexOfDeletedStatus] = newStatus;
-    setStatuses([...statuses]);
+  const commentSave = (task: TaskType, comment: string) => {
+    const newComment: CommentType = {
+      id: v1(),
+      author: task.author,
+      text: comment,
+    };
+    task.comments = [newComment, ...task.comments];
+    taskUpdate(task);
+  };
+  const commentUpdate = (task: TaskType, newComment: string, id: string) => {
+    task.comments.map((comment) => {
+      if (comment.id === id) {
+        comment.text = newComment;
+        taskUpdate(task);
+      }
+    });
+  };
+  const commentDelete = (task: TaskType, id: string) => {
+    task.comments.filter((comment) => comment.id !== id);
+    taskUpdate(task);
   };
 
-  useEffect(() => {
-    localStorage.setItem("statuses", JSON.stringify(statuses));
-  }, [statuses]);
-
   return (
-    <StatusContext.Provider value={{ statuses, statusChange }}>
+    <CommentsContext.Provider
+      value={{ commentSave, commentUpdate, commentDelete }}
+    >
       {children}
-    </StatusContext.Provider>
+    </CommentsContext.Provider>
   );
 };

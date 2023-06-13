@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { TaskContextType } from "../../types/context";
+import { TaskContextType } from "../../types/context/context";
 
 const initTask = {
   id: "",

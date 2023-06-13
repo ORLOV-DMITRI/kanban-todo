@@ -24,11 +24,14 @@
 .form__btn input {
   background-color: #579dff;
   color: #1d2125;
-  padding: 6px 12px;
+  padding: 7px 6px;
   border-radius: 3px;
   outline: none;
   border: none;
-  font-size: 15px;
+  font-size: 14px;
+  width: 80%;
+  font-weight: 500;
+  cursor: pointer;
 }
 .form__btn input:active {
   background-color: #eaf1fa;

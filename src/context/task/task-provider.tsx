@@ -1,8 +1,7 @@
 import { FC, useEffect, useMemo, useState } from "react";
-import { ProviderType } from "../../types/context";
+import { ProviderType } from "../../types/context/context";
 import { TaskContext } from "./task-context";
 import { TaskType } from "../../types/global";
-
 const initTask = {
   id: "123",
   title: "Заголовок Заголовок Заголовок",

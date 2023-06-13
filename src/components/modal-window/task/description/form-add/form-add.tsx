@@ -1,11 +1,7 @@
-import { FC, ChangeEvent, KeyboardEvent } from "react";
+import { FC, KeyboardEvent } from "react";
+import { FormAddDescriptionType } from "../../../../../types/modal-window/task/task";
 
-export type FormAddType = {
-  onChangeDescription: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  descriptionSave: () => void;
-  description: string;
-};
-export const FormAdd: FC<FormAddType> = ({
+export const FormAdd: FC<FormAddDescriptionType> = ({
   onChangeDescription,
   descriptionSave,
   description,

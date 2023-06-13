@@ -1,14 +1,14 @@
 import { AuthorContext } from "../../context/author/author-context";
-import { HeaderType } from "../../types/header";
+import { HeaderType } from "../../types/header/header";
 import "./header.css";
 import { FC, useContext } from "react";
 
-export const Header: FC<HeaderType> = ({ displayAuthor, setModalState }) => {
+export const Header: FC<HeaderType> = ({ hasAuthor, onModalStateChange }) => {
   const { author, authorDelete } = useContext(AuthorContext);
 
-  const handleAuthorDelete = () => {
+  const handleDelete = () => {
     authorDelete();
-    setModalState(true);
+    onModalStateChange(true);
   };
   return (
     <header className="header">
@@ -18,11 +18,11 @@ export const Header: FC<HeaderType> = ({ displayAuthor, setModalState }) => {
             <div className="logo"></div>
           </li>
           <li className="header__author">
-            <h3>{!displayAuthor && author}</h3>
+            <h3>{hasAuthor || author}</h3>
             <div className="author-icon"></div>
           </li>
           <li className="header__icon">
-            <div className="exit-icon" onClick={handleAuthorDelete}></div>
+            <div className="exit-icon" onClick={handleDelete}></div>
           </li>
         </ul>
       </nav>

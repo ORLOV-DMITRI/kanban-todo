@@ -1,5 +1,5 @@
 import { type } from "os";
-import { TaskType } from "./global";
+import { TaskType } from "../global";
 
 export type TaskContextType = {
   tasks: Array<TaskType>;

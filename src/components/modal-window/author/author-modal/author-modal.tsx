@@ -1,23 +1,23 @@
 import { FC } from "react";
 import "../../modal.css";
-import { AuthorModalType } from "../../../../types/modal";
+import { AuthorModalType } from "../../../../types/modal-window/author/author";
 
 export const AuthorModal: FC<AuthorModalType> = ({
   children,
-  currentState,
-  onChangeState,
+  hasAuthor,
+  onStateChange,
 }) => {
   const handleChangeState = () => {
-    onChangeState(currentState);
+    onStateChange(hasAuthor);
   };
   return (
     <div
-      className={currentState ? "card-modal active" : "card-modal"}
+      className={hasAuthor ? "card-modal active" : "card-modal"}
       onClick={handleChangeState}
     >
       <div
         className={
-          currentState ? "card-modal__content active" : "card-modal__content"
+          hasAuthor ? "card-modal__content active" : "card-modal__content"
         }
         onClick={(e) => e.stopPropagation()}
       >

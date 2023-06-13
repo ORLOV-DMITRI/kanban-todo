@@ -1,12 +1,8 @@
 import { ChangeEvent, FC, useState, useContext, FocusEvent } from "react";
-import { CommentType, TaskType } from "../../../../../types/global";
 import { CommentsContext } from "../../../../../context/comments/comments-context";
-type CommentFormEditType = {
-  comment: CommentType;
-  task: TaskType;
-  onChangeIsEdit: (status: boolean) => void;
-};
-export const CommentFormEdit: FC<CommentFormEditType> = ({
+import { FormEditCommentType } from "../../../../../types/modal-window/task/task";
+
+export const FormEdit: FC<FormEditCommentType> = ({
   task,
   comment,
   onChangeIsEdit,
@@ -29,9 +25,9 @@ export const CommentFormEdit: FC<CommentFormEditType> = ({
     e.target.selectionStart = e.target.value.length;
   };
   return (
-    <div>
+    <li>
       <div className="comment_avatar"></div>
-      <h4>{task.author}</h4>
+      <h5>Автор: {comment.author}</h5>
       <div>
         <textarea
           value={commentEdit}
@@ -44,6 +40,6 @@ export const CommentFormEdit: FC<CommentFormEditType> = ({
         <button onClick={handleSaveComment}>Сохранить</button>
         <button onClick={handleReturn}>Отменить изменения</button>
       </div>
-    </div>
+    </li>
   );
 };

@@ -1,10 +1,10 @@
-import { FC, useState, ChangeEvent, FocusEvent, useContext } from "react";
+import { FC, useState, ChangeEvent, useContext } from "react";
 import { ICONS } from "../../../../constants/icons";
 import { FormAdd } from "./form-add/form-add";
 import { FormEdit } from "./form-edit/form-edit";
-import { TaskDetailType } from "../../../../types/modal";
 import { TaskContext } from "../../../../context/task/task-context";
 import "./description.css";
+import { TaskDetailType } from "../../../../types/modal-window/task/task";
 
 export const Description: FC<TaskDetailType> = ({ task }) => {
   const [description, setDescription] = useState<string>(task.description);
@@ -49,11 +49,6 @@ export const Description: FC<TaskDetailType> = ({ task }) => {
         <h3>Описание</h3>
 
         <div className="description__form">{formSelection()}</div>
-      </div>
-
-      <div>
-        {/* <button>Сохранить</button>
-        <button>Отмена</button> */}
       </div>
     </div>
   );

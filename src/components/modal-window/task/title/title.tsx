@@ -1,8 +1,7 @@
 import { FC, FocusEvent, useContext } from "react";
 import { ICONS } from "../../../../constants/icons";
-import { TaskType } from "../../../../types/global";
 import { TaskContext } from "../../../../context/task/task-context";
-import { TaskDetailType } from "../../../../types/modal";
+import { TaskDetailType } from "../../../../types/modal-window/task/task";
 
 export const Title: FC<TaskDetailType> = ({ task }) => {
   const { taskUpdate } = useContext(TaskContext);

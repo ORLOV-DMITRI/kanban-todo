@@ -1,14 +1,9 @@
 import { FC, useState, useContext, ChangeEvent } from "react";
 import { CommentsContext } from "../../../../../context/comments/comments-context";
-import { TaskType } from "../../../../../types/global";
 import { AuthorContext } from "../../../../../context/author/author-context";
+import { FormAddCommentType } from "../../../../../types/modal-window/task/task";
 
-type CommentFormType = {
-  task: TaskType;
-  onChangeForm: (newState: boolean) => void;
-};
-
-export const CommentFormAdd: FC<CommentFormType> = ({ task, onChangeForm }) => {
+export const FormAdd: FC<FormAddCommentType> = ({ task, onChangeForm }) => {
   const { commentSave } = useContext(CommentsContext);
   const [comment, setComment] = useState<string>("");
   const { author } = useContext(AuthorContext);

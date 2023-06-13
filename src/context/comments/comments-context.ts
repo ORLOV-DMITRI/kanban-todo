@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { CommentsContextType } from "../../types/context";
+import { CommentsContextType } from "../../types/context/context";
 
 const initial = {
   commentSave: () => {},

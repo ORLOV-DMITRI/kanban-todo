@@ -1,4 +1,4 @@
-import { ProviderType } from "../../types/context";
+import { ProviderType } from "../../types/context/context";
 import { FC } from "react";
 import { useState } from "react";
 import { useEffect } from "react";

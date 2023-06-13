@@ -1,11 +1,11 @@
 import { useState, FocusEvent, FC, useContext } from "react";
 import "./status.css";
-import { StatusType } from "../../../types/todo";
+import { StatusType } from "../../../types/todo/todo";
 import { StatusContext } from "../../../context/status/status-context";
 import { TaskContext } from "../../../context/task/task-context";
 
 export const Status: FC<StatusType> = ({ status, tasks }) => {
-  const [currentStatus, setCurrentStatus] = useState(status);
+  const [currentStatus, setCurrentStatus] = useState<string>(status);
 
   const { statusChange } = useContext(StatusContext);
   const { taskUpdate } = useContext(TaskContext);
@@ -19,7 +19,7 @@ export const Status: FC<StatusType> = ({ status, tasks }) => {
     }
   };
 
-  const saveStatusHandler = (e: FocusEvent<HTMLInputElement>) => {
+  const handleSave = (e: FocusEvent<HTMLInputElement>) => {
     const newStatus = e.target.value.toUpperCase();
     const prevStatus = currentStatus;
 
@@ -39,7 +39,7 @@ export const Status: FC<StatusType> = ({ status, tasks }) => {
         defaultValue={currentStatus}
         onFocus={handleTextSelect}
         onKeyDown={handleKeyEvent}
-        onBlur={saveStatusHandler}
+        onBlur={handleSave}
       />
     </div>
   );

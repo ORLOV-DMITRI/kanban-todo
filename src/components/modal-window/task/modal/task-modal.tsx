@@ -1,8 +1,8 @@
-import { FC, useContext, KeyboardEvent } from "react";
+import { FC, useContext } from "react";
 import "../../modal.css";
-import { TaskModalType } from "../../../../types/modal";
-import { TaskModalForm } from "../modal-form/task";
 import { TaskContext } from "../../../../context/task/task-context";
+import { Container } from "../container/container";
+import { TaskModalType } from "../../../../types/modal-window/task/task";
 
 export const TaskModal: FC<TaskModalType> = ({ isActive, onCloseModal }) => {
   const { tasks, taskUpdate } = useContext(TaskContext);
@@ -30,7 +30,7 @@ export const TaskModal: FC<TaskModalType> = ({ isActive, onCloseModal }) => {
         onClick={(e) => e.stopPropagation()}
       >
         {filteredTask ? (
-          <TaskModalForm task={filteredTask} onCloseModal={handleModalClose} />
+          <Container task={filteredTask} onCloseModal={handleModalClose} />
         ) : (
           ""
         )}

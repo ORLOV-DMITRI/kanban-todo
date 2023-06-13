@@ -1,5 +1,5 @@
 import { FC, useContext, useEffect, useMemo, useState } from "react";
-import { ProviderType, Statuses } from "../../types/context";
+import { ProviderType, Statuses } from "../../types/context/context";
 import { StatusContext } from "./status-context";
 const taskStatuses: string[] = ["TODO", "In Progress", "Testing", "Done"];
 

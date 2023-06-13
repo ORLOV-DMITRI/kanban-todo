@@ -1,8 +1,8 @@
 import { ICONS } from "../../../constants/icons";
-import { AuthorType } from "../../../types/modal";
 import "./author.css";
 import { FC, ChangeEvent, useContext, useState, KeyboardEvent } from "react";
 import { AuthorContext } from "./../../../context/author/author-context";
+import { AuthorType } from "../../../types/modal-window/author/author";
 
 export const Author: FC<AuthorType> = ({ onModalStateChange }) => {
   const { authorSave } = useContext(AuthorContext);
@@ -12,20 +12,20 @@ export const Author: FC<AuthorType> = ({ onModalStateChange }) => {
     setCurrentAuthor(e.target.value);
   };
 
-  const handleAuthorSave = () => {
+  const handleSave = () => {
     authorSave(currentAuthor);
     onModalStateChange(false);
     setCurrentAuthor("");
   };
   const handleKeyEvent = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.code === "Enter" || e.code === "NumpadEnter") {
-      handleAuthorSave();
+      handleSave();
     }
   };
 
-  const displayDoneIcon = () => {
+  const showButton = () => {
     return (
-      <button type="submit" onClick={handleAuthorSave}>
+      <button type="submit" onClick={handleSave}>
         {ICONS.done()}
       </button>
     );
@@ -35,7 +35,7 @@ export const Author: FC<AuthorType> = ({ onModalStateChange }) => {
       <h2>Пожалуйста, укажите ваше имя</h2>
       <p>
         Это приложение не использует Cookie, но использует ваше имя как автора
-        задач и коментариев
+        задач и комментариев
       </p>
       <div className="author__form">
         <input
@@ -45,8 +45,9 @@ export const Author: FC<AuthorType> = ({ onModalStateChange }) => {
           onChange={handleChange}
           value={currentAuthor}
           onKeyDown={handleKeyEvent}
+          autoFocus
         />
-        {currentAuthor.length > 2 && displayDoneIcon()}
+        {currentAuthor.length > 2 && showButton()}
       </div>
     </div>
   );

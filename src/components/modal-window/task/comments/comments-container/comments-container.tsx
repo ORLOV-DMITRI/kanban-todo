@@ -1,10 +1,10 @@
-import { FC, useState, ChangeEvent } from "react";
-import { CommentFormAdd } from "../comment-form-add/comment-form-add";
-import { CommentsList } from "../comments-list/comments-list";
+import { FC, useState } from "react";
+import { FormAdd } from "../comment-form-add/comment-form-add";
 import { ICONS } from "../../../../../constants/icons";
-import { TaskDetailType } from "../../../../../types/modal";
 import "../comment.css";
 import { CommentsProvider } from "../../../../../context/comments/comments-provider";
+import { List } from "../comments-list/comments-list";
+import { TaskDetailType } from "../../../../../types/modal-window/task/task";
 
 export const CommentsContainer: FC<TaskDetailType> = ({ task }) => {
   const [isOpenForm, setIsOpenForm] = useState<boolean>(false);
@@ -14,9 +14,7 @@ export const CommentsContainer: FC<TaskDetailType> = ({ task }) => {
   };
   const selectedForm = () => {
     if (isOpenForm) {
-      return (
-        <CommentFormAdd task={task} onChangeForm={handleChangeFormState} />
-      );
+      return <FormAdd task={task} onChangeForm={handleChangeFormState} />;
     }
     return (
       <p onClick={() => handleChangeFormState(true)}>Напишите комментарий...</p>
@@ -38,7 +36,7 @@ export const CommentsContainer: FC<TaskDetailType> = ({ task }) => {
           </div>
         </div>
 
-        <CommentsList task={task} />
+        <List task={task} />
       </div>
     </CommentsProvider>
   );

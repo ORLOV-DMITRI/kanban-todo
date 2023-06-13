@@ -45,11 +45,24 @@
   border-radius: 8px;
   padding: 10px;
   background-color: #38414a;
-  margin-bottom: 27px;
+
   font-size: 14px;
 }
 .description__text {
   padding: 10px 0;
+}
+
+.description__btn-remove,
+.description__btn-edit {
+  background-color: inherit;
+  color: #b6c2cf99;
+  outline: none;
+  border: none;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  line-height: 15px;
+  font-size: 12px;
+  cursor: pointer;
 }
 
 .description__btn-done {

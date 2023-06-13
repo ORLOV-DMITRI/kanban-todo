@@ -1,12 +1,7 @@
-import { FC, ChangeEvent, useState, KeyboardEvent, FocusEvent } from "react";
+import { FC, useState, KeyboardEvent } from "react";
+import { FormEditDescriptionType } from "../../../../../types/modal-window/task/task";
 
-export type FormEditType = {
-  onChangeDescription: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  descriptionSave: () => void;
-  descriptionDelete: () => void;
-  description: string;
-};
-export const FormEdit: FC<FormEditType> = ({
+export const FormEdit: FC<FormEditDescriptionType> = ({
   onChangeDescription,
   descriptionSave,
   descriptionDelete,
@@ -67,12 +62,12 @@ export const FormEdit: FC<FormEditType> = ({
       <p onClick={() => setIsEdited(!isEdited)}>{description}</p>
       <div>
         <button
-          className="description__btn-done"
+          className="description__btn-edit"
           onClick={() => setIsEdited(!isEdited)}
         >
           Изменить
         </button>
-        <button className="description__btn-cancel" onClick={descriptionDelete}>
+        <button className="description__btn-remove" onClick={descriptionDelete}>
           Удалить
         </button>
       </div>

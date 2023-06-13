@@ -1,30 +1,31 @@
 import { FC, useContext } from "react";
 import "./column.css";
-import { ColumnType } from "../../../types/todo";
+import { ColumnType } from "../../../types/todo/todo";
 import { Status } from "../status/status";
 import { TaskType } from "../../../types/global";
 import { TaskContext } from "../../../context/task/task-context";
 import { Card } from "../card/card";
-import { AddTask } from "../task-add/task-add";
+import { AddButton } from "../add-button/add-button";
 
-export const Column: FC<ColumnType> = ({ status, onOpenModal }) => {
+export const Column: FC<ColumnType> = ({ status, onModalOpen }) => {
   const { tasks } = useContext(TaskContext);
-  const filteredTaskByStatus = tasks.filter((task: TaskType) => {
+
+  const filteredTasks = tasks.filter((task: TaskType) => {
     if (task.status === status) {
       return task;
     }
   });
   return (
     <div className="todo__column">
-      <Status status={status} tasks={filteredTaskByStatus} />
+      <Status status={status} tasks={filteredTasks} />
       <ul className="todo__lists">
-        {filteredTaskByStatus.map((task: TaskType) => (
+        {filteredTasks.map((task: TaskType) => (
           <li key={task.id}>
-            <Card task={task} onOpenModal={onOpenModal} />
+            <Card task={task} onModalOpen={onModalOpen} />
           </li>
         ))}
       </ul>
-      <AddTask status={status} />
+      <AddButton status={status} />
     </div>
   );
 };

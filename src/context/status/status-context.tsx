@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { StatusContextType } from "../../types/context";
+import { StatusContextType } from "../../types/context/context";
 
 const initial = {
   statuses: [],

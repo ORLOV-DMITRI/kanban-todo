@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 export type AuthorType = {
-  onModalStateChange: (newStatus: boolean) => void;
+  onToggleModal: (newStatus: boolean) => void;
 };
 export type AuthorModalType = {
   hasAuthor: boolean;
-  onStateChange: (newState: boolean) => void;
+  onToggleModal: (newState: boolean) => void;
   children: ReactNode;
 };

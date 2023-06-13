@@ -1,11 +1,11 @@
-import { FC, useContext, useEffect, useMemo, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { ProviderType, Statuses } from "../../types/context/context";
 import { StatusContext } from "./status-context";
-const taskStatuses: string[] = ["TODO", "In Progress", "Testing", "Done"];
+const initialStatuses: string[] = ["TODO", "In Progress", "Testing", "Done"];
 
 export const StatusProvider: FC<ProviderType> = ({ children }) => {
   if (localStorage.getItem("statuses") === null) {
-    localStorage.setItem("statuses", JSON.stringify(taskStatuses));
+    localStorage.setItem("statuses", JSON.stringify(initialStatuses));
   }
 
   const [statuses, setStatuses] = useState<string[]>(

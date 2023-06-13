@@ -7,17 +7,17 @@ import { List } from "../comments-list/comments-list";
 import { TaskDetailType } from "../../../../../types/modal-window/task/task";
 
 export const CommentsContainer: FC<TaskDetailType> = ({ task }) => {
-  const [isOpenForm, setIsOpenForm] = useState<boolean>(false);
+  const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
 
-  const handleChangeFormState = (newState: boolean) => {
-    setIsOpenForm(newState);
+  const handleFormToggle = (newState: boolean) => {
+    setIsFormOpen(newState);
   };
   const selectedForm = () => {
-    if (isOpenForm) {
-      return <FormAdd task={task} onChangeForm={handleChangeFormState} />;
+    if (isFormOpen) {
+      return <FormAdd task={task} onFormToggle={handleFormToggle} />;
     }
     return (
-      <p onClick={() => handleChangeFormState(true)}>Напишите комментарий...</p>
+      <p onClick={() => handleFormToggle(true)}>Напишите комментарий...</p>
     );
   };
   return (

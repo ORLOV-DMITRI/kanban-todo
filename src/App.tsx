@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, KeyboardEvent } from "react";
 import "./App.css";
 import { Container } from "./components/todo/container/container";
 import { Header } from "./components/header/header";
@@ -10,36 +10,36 @@ import { AuthorContext } from "./context/author/author-context";
 function App() {
   const { author } = useContext(AuthorContext);
 
-  const [isTaskModal, setIsTaskModal] = useState<boolean>(false);
+  const [isTaskModalOpen, setIsTaskModalOpen] = useState<boolean>(false);
 
-  const [isAuthorModalState, setIsAuthorModalState] = useState<boolean>(
-    author ? false : true
-  );
+  const hasAuthor: boolean = author ? false : true;
+  const [isAuthorModalOpen, setIsAuthorModalOpen] =
+    useState<boolean>(hasAuthor);
 
-  const handleTaskModalStateChange = () => {
-    setIsTaskModal((prevState) => !prevState);
+  const handleTaskModalToggle = () => {
+    setIsTaskModalOpen(!isTaskModalOpen);
   };
-  const handleAuthorModalStateChange = (newState: boolean) => {
-    setIsAuthorModalState(newState);
+  const handleAuthorModalToggle = (newState: boolean) => {
+    setIsAuthorModalOpen(newState);
   };
 
   return (
     <div>
       <AuthorModal
-        hasAuthor={isAuthorModalState}
-        onStateChange={handleAuthorModalStateChange}
+        hasAuthor={isAuthorModalOpen}
+        onToggleModal={handleAuthorModalToggle}
       >
-        <Author onModalStateChange={handleAuthorModalStateChange} />
+        <Author onToggleModal={handleAuthorModalToggle} />
       </AuthorModal>
-      <div className="container">
+      <div className="container" tabIndex={0}>
         <Header
-          hasAuthor={isAuthorModalState}
-          onModalStateChange={handleAuthorModalStateChange}
+          hasAuthor={isAuthorModalOpen}
+          onToggleModal={handleAuthorModalToggle}
         />
-        <Container onModalOpen={handleTaskModalStateChange} />
+        <Container onOpenModal={handleTaskModalToggle} />
         <TaskModal
-          isActive={isTaskModal}
-          onCloseModal={handleTaskModalStateChange}
+          isActive={isTaskModalOpen}
+          onCloseModal={handleTaskModalToggle}
         />
       </div>
     </div>

@@ -9,7 +9,7 @@ export const Container: FC<TaskContainerType> = ({ task, onCloseModal }) => {
   return (
     <div className="task">
       <div className="task__container">
-        <Title task={task} />
+        <Title task={task} onCloseModal={onCloseModal} />
         <Description task={task} />
         <CommentsContainer task={task} />
       </div>

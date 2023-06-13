@@ -3,7 +3,7 @@ import { CommentsContext } from "../../../../../context/comments/comments-contex
 import { AuthorContext } from "../../../../../context/author/author-context";
 import { FormAddCommentType } from "../../../../../types/modal-window/task/task";
 
-export const FormAdd: FC<FormAddCommentType> = ({ task, onChangeForm }) => {
+export const FormAdd: FC<FormAddCommentType> = ({ task, onFormToggle }) => {
   const { commentSave } = useContext(CommentsContext);
   const [comment, setComment] = useState<string>("");
   const { author } = useContext(AuthorContext);
@@ -14,7 +14,7 @@ export const FormAdd: FC<FormAddCommentType> = ({ task, onChangeForm }) => {
   const handleSaveComment = () => {
     commentSave(task, comment, author);
     setComment("");
-    onChangeForm(false);
+    onFormToggle(false);
   };
 
   return (

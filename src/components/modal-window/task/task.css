@@ -36,6 +36,7 @@
   flex-direction: column;
   color: #b6c2cf;
   gap: 4px;
+  margin-bottom: 6px;
 }
 .task__title-info div {
   display: flex;

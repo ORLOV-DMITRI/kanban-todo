@@ -4,22 +4,23 @@ import { FormEditCommentType } from "../../../../../types/modal-window/task/task
 
 export const FormEdit: FC<FormEditCommentType> = ({
   task,
-  comment,
-  onChangeIsEdit,
+  currentComment,
+  onToggleForm,
 }) => {
   const { commentUpdate } = useContext(CommentsContext);
 
-  const [commentEdit, setCommentEdit] = useState(comment.text);
+  const [newComment, setNewComment] = useState(currentComment.text);
+
   const handleChangeComment = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setCommentEdit(e.target.value);
+    setNewComment(e.target.value);
   };
   const handleSaveComment = () => {
-    commentUpdate(task, commentEdit, comment.id);
-    setCommentEdit("");
-    onChangeIsEdit(false);
+    commentUpdate(task, newComment, currentComment.id);
+    setNewComment("");
+    onToggleForm(false);
   };
   const handleReturn = () => {
-    onChangeIsEdit(false);
+    onToggleForm(false);
   };
   const handleFocus = (e: FocusEvent<HTMLTextAreaElement>) => {
     e.target.selectionStart = e.target.value.length;
@@ -27,10 +28,10 @@ export const FormEdit: FC<FormEditCommentType> = ({
   return (
     <li>
       <div className="comment_avatar"></div>
-      <h5>Автор: {comment.author}</h5>
+      <h5>Автор: {currentComment.author}</h5>
       <div>
         <textarea
-          value={commentEdit}
+          value={newComment}
           onChange={handleChangeComment}
           autoFocus
           onFocus={handleFocus}

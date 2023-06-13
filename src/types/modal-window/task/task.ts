@@ -3,7 +3,7 @@ import { ChangeEvent } from "react";
 
 export type TaskModalType = {
   isActive: boolean;
-  onCloseModal: (newState: boolean) => void;
+  onCloseModal: () => void;
 };
 
 export type TaskDetailType = {
@@ -11,6 +11,10 @@ export type TaskDetailType = {
 };
 
 export type TaskContainerType = {
+  task: TaskType;
+  onCloseModal: () => void;
+};
+export type TaskTitleType = {
   task: TaskType;
   onCloseModal: () => void;
 };
@@ -28,15 +32,12 @@ export type FormEditDescriptionType = {
 };
 export type FormAddCommentType = {
   task: TaskType;
-  onChangeForm: (newState: boolean) => void;
+  onFormToggle: (newState: boolean) => void;
 };
 export type FormEditCommentType = {
-  comment: CommentType;
+  currentComment: CommentType;
   task: TaskType;
-  onChangeIsEdit: (status: boolean) => void;
-};
-export type CommentListType = {
-  task: TaskType;
+  onToggleForm: (status: boolean) => void;
 };
 export type CommentItemType = {
   comment: CommentType;

@@ -1,6 +1,7 @@
-import { type } from "os";
 import { TaskType } from "../global";
-
+export type ProviderType = {
+  children: React.ReactNode;
+};
 export type TaskContextType = {
   tasks: Array<TaskType>;
   taskAdd: (task: TaskType) => void;
@@ -15,9 +16,7 @@ export type StatusContextType = {
   statuses: string[];
   statusChange: ({ newStatus, prevStatus }: Statuses) => void;
 };
-export type ProviderType = {
-  children: React.ReactNode;
-};
+
 export type AuthorContextType = {
   author: string;
   authorSave: (author: string) => void;

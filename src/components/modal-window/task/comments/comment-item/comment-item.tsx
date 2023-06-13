@@ -8,16 +8,21 @@ export const Item: FC<CommentItemType> = ({ comment, task }) => {
   const [isEdited, setIsEdited] = useState(false);
   const { commentDelete } = useContext(CommentsContext);
   const { author } = useContext(AuthorContext);
+
   const openEditForm = () => {
     setIsEdited(true);
   };
-  const handleDeleteComment = () => {
+  const handleDelete = () => {
     commentDelete(task, comment.id);
   };
 
   if (isEdited) {
     return (
-      <FormEdit comment={comment} task={task} onChangeIsEdit={setIsEdited} />
+      <FormEdit
+        currentComment={comment}
+        task={task}
+        onToggleForm={setIsEdited}
+      />
     );
   }
 
@@ -27,7 +32,7 @@ export const Item: FC<CommentItemType> = ({ comment, task }) => {
       <p>{comment.text}</p>
       <div>
         <button onClick={openEditForm}>Изменить</button>
-        <button onClick={handleDeleteComment}>Удалить</button>
+        <button onClick={handleDelete}>Удалить</button>
       </div>
     </li>
   );

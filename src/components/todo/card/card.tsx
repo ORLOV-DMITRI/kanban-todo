@@ -4,28 +4,26 @@ import { CardType } from "../../../types/todo/todo";
 import { TaskContext } from "../../../context/task/task-context";
 import { ICONS } from "../../../constants/icons";
 
-export const Card: FC<CardType> = ({ task, onModalOpen }) => {
+export const Card: FC<CardType> = ({ task, onOpenModal }) => {
   const { taskDelete, taskUpdate } = useContext(TaskContext);
 
-  const [isDeleteIconVisible, setIsDeleteIconVisible] =
-    useState<boolean>(false);
+  const [hasDeleteIcon, setHasDeleteIcon] = useState<boolean>(false);
 
   const handleIconDisplay = () => {
-    setIsDeleteIconVisible(!isDeleteIconVisible);
+    setHasDeleteIcon(!hasDeleteIcon);
   };
   const handleTaskDelete = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     taskDelete(task.id);
   };
   const handleModalOpen = () => {
-    onModalOpen(true);
+    onOpenModal(true);
     task.isActive = true;
     taskUpdate(task);
   };
 
   const showCommentsCount = () => {
     const hasComments: boolean = task.comments.length > 0;
-
     if (hasComments) {
       return (
         <span>
@@ -35,7 +33,9 @@ export const Card: FC<CardType> = ({ task, onModalOpen }) => {
     }
   };
   const showDeleteIcon = () => {
-    return <button onClick={handleTaskDelete}>{ICONS.delete()}</button>;
+    if (hasDeleteIcon) {
+      return <button onClick={handleTaskDelete}>{ICONS.delete()}</button>;
+    }
   };
 
   return (
@@ -47,7 +47,7 @@ export const Card: FC<CardType> = ({ task, onModalOpen }) => {
     >
       <div className="todo__card-info">
         <p className="todo__title">{task.title}</p>
-        {isDeleteIconVisible && showDeleteIcon()}
+        {showDeleteIcon()}
       </div>
       {showCommentsCount()}
     </div>

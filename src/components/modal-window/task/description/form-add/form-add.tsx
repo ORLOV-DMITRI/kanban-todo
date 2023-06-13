@@ -22,6 +22,7 @@ export const FormAdd: FC<FormAddDescriptionType> = ({
         onBlur={descriptionSave}
         onKeyDown={(e) => handleKeyDown(e)}
         placeholder="Добавить более подробное описание"
+        autoFocus
       ></textarea>
       <div>
         {description.length > 0 && (

@@ -1,4 +1,4 @@
 export type HeaderType = {
   hasAuthor: boolean;
-  onModalStateChange: (newState: boolean) => void;
+  onToggleModal: (newState: boolean) => void;
 };

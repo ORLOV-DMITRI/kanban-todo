@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { CommentListType } from "../../../../../types/modal-window/task/task";
+import { TaskDetailType } from "../../../../../types/modal-window/task/task";
 import { Item } from "../comment-item/comment-item";
 
-export const List: FC<CommentListType> = ({ task }) => {
+export const List: FC<TaskDetailType> = ({ task }) => {
   return (
     <div>
       {task.comments.length > 0 && (

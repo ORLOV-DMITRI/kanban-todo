@@ -23,7 +23,7 @@ export const FormAdd: FC<FormAddTaskType> = ({ status, onCloseForm }) => {
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
   };
-  const handleSave = (e: MouseEvent | KeyboardEvent) => {
+  const handleSave = () => {
     const newTitle: string = title.trim();
 
     if (newTitle === "") return;
@@ -45,10 +45,10 @@ export const FormAdd: FC<FormAddTaskType> = ({ status, onCloseForm }) => {
 
   const handleKeyEvent = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.ctrlKey && e.code === "Enter") {
-      handleSave(e);
+      handleSave();
     }
     if (e.altKey && e.code === "Enter") {
-      handleSave(e);
+      handleSave();
     }
     if (e.code === "Escape") {
       onCloseForm();
@@ -62,6 +62,7 @@ export const FormAdd: FC<FormAddTaskType> = ({ status, onCloseForm }) => {
           value={title}
           onChange={handleChange}
           onKeyDown={handleKeyEvent}
+          onBlur={handleSave}
           autoFocus
           placeholder="Введите заголовок для этой карточки"
         ></textarea>

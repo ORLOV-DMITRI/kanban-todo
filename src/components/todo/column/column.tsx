@@ -7,7 +7,7 @@ import { TaskContext } from "../../../context/task/task-context";
 import { Card } from "../card/card";
 import { AddButton } from "../add-button/add-button";
 
-export const Column: FC<ColumnType> = ({ status, onModalOpen }) => {
+export const Column: FC<ColumnType> = ({ status, onOpenModal }) => {
   const { tasks } = useContext(TaskContext);
 
   const filteredTasks = tasks.filter((task: TaskType) => {
@@ -21,7 +21,7 @@ export const Column: FC<ColumnType> = ({ status, onModalOpen }) => {
       <ul className="todo__lists">
         {filteredTasks.map((task: TaskType) => (
           <li key={task.id}>
-            <Card task={task} onModalOpen={onModalOpen} />
+            <Card task={task} onOpenModal={onOpenModal} />
           </li>
         ))}
       </ul>

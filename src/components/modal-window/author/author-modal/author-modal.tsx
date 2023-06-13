@@ -5,15 +5,15 @@ import { AuthorModalType } from "../../../../types/modal-window/author/author";
 export const AuthorModal: FC<AuthorModalType> = ({
   children,
   hasAuthor,
-  onStateChange,
+  onToggleModal,
 }) => {
-  const handleChangeState = () => {
-    onStateChange(hasAuthor);
+  const handleModalToggle = () => {
+    onToggleModal(hasAuthor);
   };
   return (
     <div
       className={hasAuthor ? "card-modal active" : "card-modal"}
-      onClick={handleChangeState}
+      onClick={handleModalToggle}
     >
       <div
         className={

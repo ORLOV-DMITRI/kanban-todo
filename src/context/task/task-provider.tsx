@@ -2,21 +2,8 @@ import { FC, useEffect, useMemo, useState } from "react";
 import { ProviderType } from "../../types/context/context";
 import { TaskContext } from "./task-context";
 import { TaskType } from "../../types/global";
-const initTask = {
-  id: "123",
-  title: "Заголовок Заголовок Заголовок",
-  description: "Описание Описание Описание Описание Описание",
-  comment: [
-    {
-      id: "111",
-      text: "Комент 1 Комент 1 Комент 1 Комент 1 Комент 1",
-      author: "DImas",
-    },
-  ],
-  status: "TODO",
-  author: "Dimas",
-};
-const initTasks = [
+
+const initialTasks = [
   {
     id: "",
     title: "",
@@ -28,14 +15,14 @@ const initTasks = [
         author: "",
       },
     ],
-    status: "init",
+    status: "initial",
     author: "",
   },
 ];
 
 export const TaskProvider: FC<ProviderType> = ({ children }) => {
   if (localStorage.getItem("tasks") == null) {
-    localStorage.setItem("tasks", JSON.stringify(initTasks));
+    localStorage.setItem("tasks", JSON.stringify(initialTasks));
   }
   const [tasks, setTasks] = useState<TaskType[]>(
     JSON.parse(localStorage.getItem("tasks") || "")

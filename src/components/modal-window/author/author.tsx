@@ -4,7 +4,7 @@ import { FC, ChangeEvent, useContext, useState, KeyboardEvent } from "react";
 import { AuthorContext } from "./../../../context/author/author-context";
 import { AuthorType } from "../../../types/modal-window/author/author";
 
-export const Author: FC<AuthorType> = ({ onModalStateChange }) => {
+export const Author: FC<AuthorType> = ({ onToggleModal }) => {
   const { authorSave } = useContext(AuthorContext);
   const [currentAuthor, setCurrentAuthor] = useState<string>("");
 
@@ -14,7 +14,7 @@ export const Author: FC<AuthorType> = ({ onModalStateChange }) => {
 
   const handleSave = () => {
     authorSave(currentAuthor);
-    onModalStateChange(false);
+    onToggleModal(false);
     setCurrentAuthor("");
   };
   const handleKeyEvent = (e: KeyboardEvent<HTMLInputElement>) => {

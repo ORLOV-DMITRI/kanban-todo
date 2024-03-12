@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/kanban-todo/static/css/main.312ee7bd.css",
+    "main.js": "/kanban-todo/static/js/main.0dab7f51.js",
+    "static/media/background.jpg": "/kanban-todo/static/media/background.f6e5d33277f4307dfa37.jpg",
+    "index.html": "/kanban-todo/index.html",
+    "main.312ee7bd.css.map": "/kanban-todo/static/css/main.312ee7bd.css.map",
+    "main.0dab7f51.js.map": "/kanban-todo/static/js/main.0dab7f51.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.312ee7bd.css",
+    "static/js/main.0dab7f51.js"
+  ]
+}
